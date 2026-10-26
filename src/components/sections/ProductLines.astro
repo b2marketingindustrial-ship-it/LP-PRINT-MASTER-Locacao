@@ -2,17 +2,19 @@
 /**
  * Linhas de produto — fase "oferta" da biblioteca B2.
  *
- * Cabeçalho à esquerda, carrossel de logos à direita, grid de 3–4 cards com um
- * card escuro. Fundo e respiro vêm da composição via `tone`/`rhythm`.
+ * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
+ * cabeçalho com ajuda à direita, 4 cards brancos com foto grande em palco menta,
+ * etiqueta, 2 características e botão de orçamento, e a faixa de marcas abaixo.
+ * Fundo e respiro continuam vindo da composição via `tone`/`rhythm`; o menta é uma
+ * camada por cima do tom, como as camadas decorativas das outras seções.
  */
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
-import BrandCarousel from '@components/BrandCarousel.astro'
 import Eyebrow from '@components/Eyebrow.astro'
 import type { SectionProps } from '@lib/layout'
-import { cta } from '@data/content'
 import { productLines } from '@data/sections/linhas'
+import { brands } from '@data/brands'
 
 type Props = SectionProps
 
@@ -20,111 +22,65 @@ const { tone, rhythm } = Astro.props
 const lines = productLines.items
 ---
 
-<Section id="linhas" tone={tone} rhythm={rhythm}>
-  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-    <div class="max-w-xl">
+<Section id="linhas" tone={tone} rhythm={rhythm} data-linhas>
+  <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+    <div class="max-w-3xl">
       <Eyebrow>{productLines.eyebrow}</Eyebrow>
-      <h2 class="mt-3 font-display text-3xl leading-tight font-extrabold text-ink sm:text-4xl">
+      <h2 class="mt-4 font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.35rem]">
         {productLines.title}
       </h2>
-      <p class="mt-3 max-w-[330px] font-sans text-[15px] leading-relaxed text-ink-soft">
+      <p class="mt-4 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
         {productLines.text}
       </p>
     </div>
 
-    <div class="min-w-0 flex-1 sm:pl-10">
-      <BrandCarousel />
+    <div class="shrink-0 lg:pb-2">
+      <p class="font-sans text-[15px] font-medium text-ink">{productLines.help.text}</p>
+      <button
+        type="button"
+        data-cta="linhas-ajuda"
+        class="btn-slave-whats group mt-3 inline-flex items-center gap-3 rounded-full border-2 border-primary-dark px-6 py-3 font-sans text-[15px] font-bold text-primary-dark transition-colors duration-200 hover:bg-primary-dark hover:text-neutral-light"
+      >
+        {productLines.help.cta}
+        <Icon
+          name="arrow-right"
+          class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+        />
+      </button>
     </div>
   </div>
 
-  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-    {lines.map((line, i) => (
-      <article
-        class:list={[
-          'product-card group relative flex flex-col overflow-hidden rounded-2xl border transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5',
-          line.dark
-            ? 'navy-premium border-white/10 shadow-[0_18px_40px_-24px_rgba(0,24,48,0.6)] hover:border-accent-orange/60 hover:shadow-[0_28px_56px_-24px_rgba(0,24,48,0.75)]'
-            : 'border-neutral-gray-200/70 bg-neutral-light shadow-[0_1px_2px_rgba(13,29,48,0.05)] hover:border-accent-orange/50 hover:shadow-[0_28px_56px_-28px_rgba(0,33,71,0.35)]',
-        ]}
-      >
-        {/* Linha de acento no topo — cresce no hover */}
-        <span
-          aria-hidden="true"
-          class="absolute inset-x-0 top-0 z-10 h-[3px] origin-left scale-x-0 bg-accent-orange transition-transform duration-300 ease-out group-hover:scale-x-100"
-        />
-
-        {/* Palco da imagem */}
-        <div
-          class:list={[
-            'relative flex h-40 items-center justify-center overflow-hidden',
-            line.dark ? 'product-card__stage--dark' : 'product-card__stage--light',
-          ]}
-        >
+  <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" aria-label={productLines.eyebrow}>
+    {lines.map((line) => (
+      <li class="linhas-card group flex flex-col rounded-[22px] border border-primary-dark/10 bg-neutral-light p-3 shadow-[0_22px_44px_-30px_rgba(6,67,55,0.45)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(6,67,55,0.55)]">
+        {/* Palco da foto */}
+        <div class="linhas-stage relative flex aspect-[6/5] items-center justify-center overflow-hidden rounded-2xl">
+          <span class="absolute top-3 left-3 z-[2] rounded-full bg-brand-mint-soft px-3 py-1.5 font-sans text-[10.5px] font-bold tracking-[0.08em] text-primary-dark uppercase ring-1 ring-brand-mint/50">
+            {line.tag}
+          </span>
           <Image
             src={line.photo.src}
             alt={line.photo.alt}
             format="webp"
-            width={line.dark ? 640 : 360}
+            width={640}
             loading="lazy"
             decoding="async"
-            class:list={[
-              line.dark
-                ? 'absolute inset-0 z-[1] h-full w-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.04]'
-                : 'relative z-[1] max-h-[7.75rem] w-auto max-w-[78%] object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:-rotate-2 group-hover:scale-[1.07]',
-            ]}
+            class="relative z-[1] mt-5 max-h-[84%] w-auto max-w-[92%] object-contain transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />
-
-          <span class="absolute top-4 left-4 z-[2] font-display text-[11px] font-extrabold tracking-[0.2em] text-primary-dark/40">
-            {String(i + 1).padStart(2, '0')}
-          </span>
-
-          <span class="absolute top-3.5 right-4 z-[2] rounded-full border border-primary-dark/10 bg-neutral-light px-2.5 py-1 font-sans text-[10px] font-bold tracking-[0.16em] text-primary-dark/75 uppercase">
-            {line.tag}
-          </span>
-
-          {!line.dark && (
-            <span
-              aria-hidden="true"
-              class="absolute bottom-3 left-1/2 h-4 w-28 -translate-x-1/2 rounded-[100%] bg-primary-dark/20 opacity-50 blur-md transition-opacity duration-500 group-hover:opacity-90"
-            />
-          )}
         </div>
 
         {/* Conteúdo */}
-        <div class="flex flex-1 flex-col px-6 pt-4 pb-4">
-          <h3
-            class:list={[
-              'font-display text-lg leading-snug font-extrabold',
-              line.dark ? 'text-neutral-light' : 'text-ink',
-            ]}
-          >
+        <div class="flex flex-1 flex-col px-3 pt-5 pb-3">
+          <h3 class="font-display text-[1.35rem] leading-snug font-extrabold text-ink">
             {line.title}
           </h3>
+          <p class="mt-2 font-sans text-[15px] leading-relaxed text-ink-soft">{line.description}</p>
 
-          <p
-            class:list={[
-              'mt-2 font-sans text-[13px] leading-relaxed',
-              line.dark ? 'text-neutral-light/65' : 'text-ink-soft',
-            ]}
-          >
-            {line.description}
-          </p>
-
-          <ul class="mt-4 mb-4 flex flex-col gap-2">
+          <ul class="mt-4 mb-6 flex flex-col gap-2.5">
             {line.features.map((feature) => (
-              <li
-                class:list={[
-                  'flex items-center gap-2.5 font-sans text-[13px] font-medium',
-                  line.dark ? 'text-neutral-light/90' : 'text-ink',
-                ]}
-              >
-                <span
-                  class:list={[
-                    'flex size-5 shrink-0 items-center justify-center rounded-full text-accent-orange',
-                    line.dark ? 'bg-accent-orange/20' : 'bg-accent-orange/10',
-                  ]}
-                >
-                  <Icon name="check" class="size-3" />
+              <li class="flex items-center gap-2.5 font-sans text-[14.5px] text-ink">
+                <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-mint-soft text-accent-orange ring-1 ring-brand-mint/50">
+                  <Icon name="check" class="size-3.5" />
                 </span>
                 {feature}
               </li>
@@ -134,85 +90,69 @@ const lines = productLines.items
           <button
             type="button"
             data-cta={`linhas-${line.id}`}
-            class:list={[
-              'btn-slave-whats mt-auto flex items-center justify-between gap-3 border-t pt-3 font-sans text-[13px] font-bold transition-colors duration-200 hover:text-accent-orange',
-              line.dark
-                ? 'border-white/10 text-neutral-light'
-                : 'border-neutral-gray-200/60 text-primary-dark',
-            ]}
+            class="btn-slave-whats mt-auto flex w-full items-center justify-between gap-3 rounded-xl bg-primary-dark px-5 py-3.5 font-sans text-[15px] font-bold text-neutral-light transition-colors duration-200 hover:bg-accent-orange"
           >
-            <span>{cta.card}</span>
-            <span
-              class:list={[
-                'flex size-8 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 group-hover:translate-x-0.5 group-hover:bg-accent-orange group-hover:text-neutral-light',
-                line.dark
-                  ? 'bg-white/10 text-neutral-light'
-                  : 'bg-neutral-gray-100 text-primary-dark',
-              ]}
-            >
-              <Icon name="arrow-right" class="size-3.5" />
-            </span>
+            <span>{productLines.itemCta}</span>
+            <Icon name="arrow-right" class="size-4 shrink-0" />
           </button>
         </div>
-      </article>
+      </li>
     ))}
-  </div>
+  </ul>
+
+  {/* Faixa de marcas — só com 4+ logos */}
+  {brands.length >= 4 && (
+    <div class="mt-14">
+      <div class="flex items-center gap-5">
+        <span aria-hidden="true" class="h-px flex-1 bg-primary-dark/15" />
+        <p class="text-center font-sans text-[11.5px] font-bold tracking-[0.2em] text-ink-soft uppercase">
+          {productLines.brandsLabel}
+        </p>
+        <span aria-hidden="true" class="h-px flex-1 bg-primary-dark/15" />
+      </div>
+      <ul
+        class="mt-6 grid grid-cols-4 items-center gap-x-6 gap-y-5 lg:grid-cols-8"
+        aria-label={productLines.brandsLabel}
+      >
+        {brands.map((brand) => (
+          <li class="flex justify-center">
+            <Image
+              src={brand.src}
+              alt={brand.name}
+              format="webp"
+              width={240}
+              loading="lazy"
+              decoding="async"
+              class="h-12 w-auto opacity-80 brightness-[0.6] contrast-125 grayscale transition-[filter,opacity] duration-300 hover:opacity-100 hover:grayscale-0"
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
 </Section>
 
 <style>
-  /* Palco claro: gradiente suave + malha de pontos que esmaece nas bordas */
-  .product-card__stage--light {
-    background-image: linear-gradient(180deg, #f5f7fa 0%, #ffffff 100%);
+  /* Camada menta sobre o tom da seção, dissolvendo em branco na base */
+  :global([data-linhas]) {
+    background-image:
+      radial-gradient(900px 420px at 85% 0%, rgb(97 229 169 / 0.12) 0%, transparent 70%),
+      linear-gradient(180deg, #f0f9f5 0%, #f5fbf8 70%, #ffffff 100%);
   }
 
-  .product-card__stage--light::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(0, 33, 71, 0.16) 1px, transparent 1.2px);
-    background-size: 18px 18px;
-    mask-image: radial-gradient(ellipse at center, transparent 32%, black 90%);
-    -webkit-mask-image: radial-gradient(ellipse at center, transparent 32%, black 90%);
-    opacity: 0.7;
-    pointer-events: none;
-  }
-
-  /* Palco do card escuro: painel branco para a foto de marcas */
-  .product-card__stage--dark {
-    background-color: #ffffff;
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
-  }
-
-  /* Canto técnico discreto que aparece no hover */
-  .product-card::after {
-    content: '';
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    width: 14px;
-    height: 14px;
-    border-right: 2px solid var(--color-accent-orange);
-    border-bottom: 2px solid var(--color-accent-orange);
-    opacity: 0;
-    transform: translate(4px, 4px);
-    transition:
-      opacity 300ms ease,
-      transform 300ms ease;
-    pointer-events: none;
-  }
-
-  .product-card:hover::after {
-    opacity: 0.9;
-    transform: translate(0, 0);
+  /* Palco menta da foto, com brilho sob o produto */
+  .linhas-stage {
+    background-image:
+      radial-gradient(ellipse 70% 55% at 50% 70%, rgb(97 229 169 / 0.24) 0%, transparent 72%),
+      linear-gradient(180deg, #e9f6f0 0%, #f3faf7 100%);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .product-card,
-    .product-card img,
-    .product-card span {
+    .linhas-card,
+    .linhas-card * {
       transition: none !important;
     }
-    .product-card:hover {
+    .linhas-card:hover {
       transform: none;
     }
   }

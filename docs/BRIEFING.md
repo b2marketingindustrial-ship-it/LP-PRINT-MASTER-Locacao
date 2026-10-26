@@ -79,23 +79,23 @@ Derivada em: 26/10/2026 · comando aplicado: `npm run compose -- linhas processo
 
 ## Entradas do núcleo
 
-| #   | Entrada                 | Valor                                                                                       | Origem                                                   |
-| --- | ----------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| 1   | MARCA                   | Print Master                                                                                | briefing                                                 |
-| 2   | MARCA_CURTA             | Print Master                                                                                | briefing                                                 |
-| 3   | PRODUTO_PRINCIPAL       | Locação de impressoras                                                                      | briefing                                                 |
-| 4   | CONTEXTO_DE_USO         | empresas                                                                                    | página atual                                             |
-| 5   | PUBLICO                 | Administrativo, Compras, TI, Diretoria                                                      | **inferido**                                             |
-| 6   | HERO                    | Desde 2003 / no mercado · Manutenção / inclusa · Suporte / especializado                    | briefing; forma curta do mockup de abertura (26/10/2026) |
-| 7   | MARCAS_ATENDIDAS        | Ricoh, só por extenso                                                                       | logos de terceiros: decisão do cliente pendente          |
-| 8   | SELOS_DE_CONFIANCA      | Manutenção inclusa · Suporte remoto e presencial · Sede em Goiânia/GO                       | briefing e endereço                                      |
-| 9   | ENDERECO                | Rua C56 nº 65, Qd. 103, Lt. 05, Setor Sudoeste, Goiânia/GO, CEP 74.305-350                  | briefing                                                 |
-| 10  | URL_FINAL + PRIVACIDADE | `https://printmaster.net.br/lp-locacao-de-impressoras-para-empresas/`; sem política         | briefing                                                 |
-| 11  | SHORTCODES              | `[atendimento_chat id="default"]` · `[atendimento_form id="default-form"]`                  | default                                                  |
-| 12  | WHATSAPP                | sem botão flutuante                                                                         | ausente no material                                      |
-| 13  | STACK + PUBLICACAO      | Astro, `main` → `wp-build`; prévia na Vercel                                                | default do padrão                                        |
-| 14  | TOKENS_DE_COR + FONTE   | verdes da marca: `#064337` (profundo), `#027653` (ação), `#61e5a9` (menta do logo); Manrope | logotipo e mockup de abertura (26/10/2026)               |
-| 15  | CAMPANHA                | `locação de impressoras`                                                                    | briefing                                                 |
+| #   | Entrada                 | Valor                                                                                       | Origem                                                                                      |
+| --- | ----------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 1   | MARCA                   | Print Master                                                                                | briefing                                                                                    |
+| 2   | MARCA_CURTA             | Print Master                                                                                | briefing                                                                                    |
+| 3   | PRODUTO_PRINCIPAL       | Locação de impressoras                                                                      | briefing                                                                                    |
+| 4   | CONTEXTO_DE_USO         | empresas                                                                                    | página atual                                                                                |
+| 5   | PUBLICO                 | Administrativo, Compras, TI, Diretoria                                                      | **inferido**                                                                                |
+| 6   | HERO                    | Desde 2003 / no mercado · Manutenção / inclusa · Suporte / especializado                    | briefing; forma curta do mockup de abertura (26/10/2026)                                    |
+| 7   | MARCAS_ATENDIDAS        | Ricoh, Brother, Canon, Epson, OKI, Konica Minolta, Zebra e Kyocera, com logos               | logos recortadas da arte que o cliente publica no site atual; mockup aprovado em 26/10/2026 |
+| 8   | SELOS_DE_CONFIANCA      | Manutenção inclusa · Suporte remoto e presencial · Sede em Goiânia/GO                       | briefing e endereço                                                                         |
+| 9   | ENDERECO                | Rua C56 nº 65, Qd. 103, Lt. 05, Setor Sudoeste, Goiânia/GO, CEP 74.305-350                  | briefing                                                                                    |
+| 10  | URL_FINAL + PRIVACIDADE | `https://printmaster.net.br/lp-locacao-de-impressoras-para-empresas/`; sem política         | briefing                                                                                    |
+| 11  | SHORTCODES              | `[atendimento_chat id="default"]` · `[atendimento_form id="default-form"]`                  | default                                                                                     |
+| 12  | WHATSAPP                | sem botão flutuante                                                                         | ausente no material                                                                         |
+| 13  | STACK + PUBLICACAO      | Astro, `main` → `wp-build`; prévia na Vercel                                                | default do padrão                                                                           |
+| 14  | TOKENS_DE_COR + FONTE   | verdes da marca: `#064337` (profundo), `#027653` (ação), `#61e5a9` (menta do logo); Manrope | logotipo e mockup de abertura (26/10/2026)                                                  |
+| 15  | CAMPANHA                | `locação de impressoras`                                                                    | briefing                                                                                    |
 
 ## Assets
 
@@ -106,15 +106,15 @@ Derivada em: 26/10/2026 · comando aplicado: `npm run compose -- linhas processo
 | Logo           | `src/assets/LOGO.png`   | 240×200, fundo transparente | entregue — logotipo do site recortado (1736×398); o `Image` do Header usa 262×60, sem a placa branca                  |
 | Banner do hero | `src/assets/heroBg.png` | 1981×900, brief 4.1.3       | entregue em 26/10/2026 pelo usuário — multifuncionais Ricoh e Canon e impressora Epson em escritório claro (1870×841) |
 
-| Asset                   | Arquivo esperado                        | Especificação                   | Status                                                                                      |
-| ----------------------- | --------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------- |
-| Multifuncional Ricoh    | `src/assets/linhas/linha-1.png`         | PNG 800×600, fundo transparente | entregue — foto do site, fundo branco removido                                              |
-| Copiadora               | `src/assets/linhas/linha-2.png`         | PNG 800×600, fundo transparente | entregue — recorte do site                                                                  |
-| Scanner                 | `src/assets/linhas/linha-3.png`         | PNG 800×600, fundo transparente | entregue — foto do site, fundo cinza-claro removido                                         |
-| Equipamentos conectados | `src/assets/linhas/marcas.png`          | 1280×800                        | **provisório** — ícone de nuvem do site; pedir foto real                                    |
-| Aplicações (4)          | `src/assets/aplicacoes/aplicacao-*.jpg` | 1200×900 (4:3)                  | entregue em baixa resolução (675 a 885 px) — `check:lp` avisa                               |
-| Cenário                 | `src/assets/diferenciais/cenario.jpg`   | 1600×900                        | **provisório** — foto "departamentos administrativos" do site, desfocada e tingida de verde |
-| Pessoa                  | `src/assets/diferenciais/pessoa.png`    | 1220×1000, fundo transparente   | **provisório** — frota de equipamentos do site, recortada; pedir pessoa da equipe           |
+| Asset                | Arquivo esperado                        | Especificação                   | Status                                                                                                                 |
+| -------------------- | --------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Multifuncional Ricoh | `src/assets/linhas/linha-1.png`         | PNG 800×600, fundo transparente | entregue — foto do site, fundo branco removido                                                                         |
+| Copiadora            | `src/assets/linhas/linha-2.png`         | PNG 800×600, fundo transparente | entregue — recorte do site                                                                                             |
+| Scanner              | `src/assets/linhas/linha-3.png`         | PNG 800×600, fundo transparente | entregue — foto do site, fundo cinza-claro removido                                                                    |
+| Impressão conectada  | `src/assets/linhas/marcas.png`          | 1280×800                        | montada em 26/10/2026 no estilo do mockup: celular e sinal de rede desenhados + a foto real da Ricoh M 320F (1007×630) |
+| Aplicações (4)       | `src/assets/aplicacoes/aplicacao-*.jpg` | 1200×900 (4:3)                  | entregue em baixa resolução (675 a 885 px) — `check:lp` avisa                                                          |
+| Cenário              | `src/assets/diferenciais/cenario.jpg`   | 1600×900                        | **provisório** — foto "departamentos administrativos" do site, desfocada e tingida de verde                            |
+| Pessoa               | `src/assets/diferenciais/pessoa.png`    | 1220×1000, fundo transparente   | **provisório** — frota de equipamentos do site, recortada; pedir pessoa da equipe                                      |
 
 ## Conflitos com o padrão
 
@@ -126,6 +126,7 @@ Derivada em: 26/10/2026 · comando aplicado: `npm run compose -- linhas processo
 
 - **Abertura refeita sobre o mockup do cliente (26/10/2026).** `Header.astro`: barra branca translúcida, logo sem a placa branca, tagline com marcador menta e CTA em pílula verde com ícone de WhatsApp — a ordem logo · tagline · CTA e a ausência de menu continuam as do padrão (o menu do mockup não entrou). `Hero.astro`: fundo claro, título em três linhas com o destaque `hero.highlight`, CTA primário em pílula, secundário como link com ícone, pontos curtos e a foto ancorada pelo centro do grupo de impressoras (53,5% da largura) no centro da coluna 2; no mobile a foto vira um card entre o texto e o chat. O grid de três colunas e a coluna de 300px do shortcode continuam. A assinatura A8 de `scripts/check-lp.mjs` foi repinada para essa abertura, como na LP de compressores de parafuso.
 - **Tokens da marca em toda a página** (`src/styles/global.css`): os nomes do padrão ficam, com os valores verdes — "navy" é o verde profundo e "orange" é o verde de ação. As sombras laranja fixas dos botões de `ProcessSteps.astro` e `WhyBrand.astro` passaram para a cor de ação; vale levar para a biblioteca uma sombra que use o token.
+- **`linhas` como no mockup aprovado (26/10/2026).** Fundo menta, título maior com subtítulo curto, "Precisa de ajuda para escolher?" com botão "Fale com um especialista" (`data-cta="linhas-ajuda"`), 4 cards brancos com foto grande em palco menta, etiqueta, 2 características e botão "Solicitar orçamento", sem card escuro, e a faixa "Soluções com marcas reconhecidas" com 8 logos em cinza. Os rótulos de CTA desta seção são os do mockup, não o vocabulário fixo. O contrato da seção foi repinado em `lp.manifest.json` (2 características, sem `exactlyOneTrue`) e o `scripts/ficha.mjs` local passou a usar o contrato da LP quando houver, o mesmo que o `check:lp` usa. Os recortes de `linha-1` e `linha-3` foram refeitos com limiar estrito, porque o fundo menta revelava o corpo branco "comido" pelo recorte antigo.
 - **Prévia do chat fora do WordPress**: na Vercel o shortcode chega como texto cru; o Hero o esconde e mostra um card de prévia ("O chat da Print Master abre aqui na página publicada"). Só age quando o conteúdo é exatamente um shortcode e o domínio não é `printmaster.net.br`; no WordPress nada muda.
 - `Layout.astro`: o preload do LCP acompanha as larguras do banner novo (até 1870px) e os `sizes` do `<Picture>`.
 - **Fonte servida pelo próprio site**: o Manrope saiu do Google Fonts para `@fontsource-variable/manrope` (5.3.0), com preload do subconjunto latino no `Layout.astro` e reserva com métricas de Arial (`Arial`, `Helvetica`, `Liberation Sans`). Com a abertura nova, a troca tardia de fonte no runner Linux (reserva DejaVu, mais larga) deslocava o hero: CLS de 0,104 no Lighthouse CI, acima do limite de 0,1. Depois da mudança: CLS 0 e LCP ~0,5 s no Lighthouse local.

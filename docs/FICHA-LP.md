@@ -87,9 +87,9 @@ campanha:
 publico: [Administrativo, Compras, TI, Diretoria]
 
 marcas:
-  usarLogos: false
-  nomes: [Ricoh]
-  autorizacao: não solicitada — a Ricoh aparece só por extenso
+  usarLogos: true
+  nomes: [Ricoh, Brother, Canon, Epson, OKI, Konica Minolta, Zebra, Kyocera]
+  autorizacao: logos recortadas da arte que o próprio cliente publica no site atual; mockup aprovado em 26/10/2026
 
 tokens:
   padrao: false
@@ -135,38 +135,40 @@ blocos:
     responde:
       [locacao-aluguel, multifuncionais-copiadoras, scanners, impressao-colorida, marca-ricoh]
     papeis: [Administrativo, Compras]
+    # variante local do mockup aprovado em 26/10/2026: 2 características, sem card escuro
     eyebrow: Equipamentos para locação
     title: Impressoras, copiadoras e scanners para locação
-    text: 'Trabalhamos com o equipamento ideal para a sua necessidade: modelos laser e multifuncionais, monocromáticos ou coloridos.'
+    text: Encontre o equipamento ideal para a rotina da sua empresa.
+    help:
+      text: Precisa de ajuda para escolher?
+      cta: Fale com um especialista
+    itemCta: Solicitar orçamento
+    brandsLabel: Soluções com marcas reconhecidas
     items:
       - id: multifuncionais
-        tag: Ricoh
-        title: Multifuncionais laser Ricoh
-        description: Modelos laser Ricoh mono e coloridos para a rotina da empresa.
-        features: ['Imprime, copia e digitaliza', Mono ou colorida, Tecnologia laser]
+        tag: Multifuncionais
+        title: Multifuncionais Ricoh
+        description: Imprima, copie e digitalize com praticidade.
+        features: [Modelos mono e coloridos, Tecnologia laser]
         photo: Impressora multifuncional laser Ricoh M 320F
-        dark: false
       - id: copiadoras
-        tag: Alto volume
+        tag: Alta produtividade
         title: Copiadoras
-        description: Copiadoras de alta produtividade para grandes volumes de cópias.
-        features: [Alta produtividade, Grandes volumes, Manutenção inclusa]
+        description: Mais agilidade para grandes volumes de cópias.
+        features: [Alta produtividade, Manutenção inclusa]
         photo: Copiadora multifuncional Ricoh MP 4055
-        dark: false
       - id: scanners
         tag: Digitalização
         title: Scanners inteligentes
-        description: Scanners inteligentes para digitalizar documentos em rede.
-        features: [Digitalização em rede, Integração com GED, Arquivo digital]
+        description: Organize e digitalize documentos em rede.
+        features: [Digitalização em rede, Arquivo digital]
         photo: Scanner de documentos fi-7600
-        dark: false
       - id: conectados
-        tag: Mobilidade
-        title: Equipamentos conectados
-        description: Equipamentos com impressão a partir de dispositivos móveis.
-        features: [Impressão pelo celular, Conexão em rede, Contabilização de páginas]
-        photo: Ícone de nuvem conectada a servidores
-        dark: true
+        tag: Conectividade
+        title: Impressão conectada
+        description: Imprima pela rede e por dispositivos móveis.
+        features: [Impressão pelo celular, Conexão em rede]
+        photo: Celular enviando impressão por rede sem fio para uma multifuncional Ricoh
 
   vitrine:
     veredicto: insuficiente
@@ -287,7 +289,6 @@ conflitos:
 naoAplicado:
   - CNPJ 21.762.387/0001-93 (dado legal, sem bloco previsto no footer padrão)
   - texto institucional longo de apresentação da empresa
-  - imagem com logos de fabricantes (Ricoh, OKI, Brother, Canon, Epson, Konica Minolta, Zebra, Kyocera) — uso de logo de terceiros sem decisão registrada
   - aplicações excedentes "Clínicas e consultórios" e "Departamentos administrativos" (a foto do segundo virou o cenário de diferenciais)
   - logotipo antigo logo-printmaster.jpg
 ```

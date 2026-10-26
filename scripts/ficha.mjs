@@ -316,7 +316,12 @@ if (!Object.keys(blocos).length)
 const conteudoPorSlug = new Map()
 
 for (const [slug, bloco] of Object.entries(blocos)) {
-  const meta = biblioteca.get(slug)
+  // Contrato repinado na LP (variante local registrada em lp.manifest.json) vale sobre o
+  // da biblioteca — é o mesmo contrato que o check:lp usa. Repinado em 26/10/2026 para a
+  // variante de `linhas` da Print Master (docs/BRIEFING.md).
+  const base = biblioteca.get(slug)
+  const contratoLocal = manifestoAnterior?.sections?.find((s) => s.slug === slug)?.contract
+  const meta = base && contratoLocal ? { ...base, contract: contratoLocal } : base
   if (!meta) {
     fail(`blocos.${slug}`, `não existe seção com esse slug na biblioteca`)
     continue

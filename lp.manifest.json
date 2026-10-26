@@ -43,7 +43,8 @@
       ],
       "exampleHash": "8d2664e3a490fc3d",
       "ctas": [
-        "linhas-{item.id}"
+        "linhas-{item.id}",
+        "linhas-ajuda"
       ],
       "contract": {
         "itemsPath": "items",
@@ -55,15 +56,11 @@
           "title",
           "description",
           "photo",
-          "features",
-          "dark"
+          "features"
         ],
         "itemArrays": {
-          "features": 3
+          "features": 2
         },
-        "exactlyOneTrue": [
-          "dark"
-        ],
         "maxLength": {
           "text": 170,
           "item.description": 90
@@ -88,7 +85,8 @@
           "height": 800,
           "alpha": false
         }
-      ]
+      ],
+      "localVariant": "Print Master 26/10/2026 — mockup: 2 características por card, sem card escuro, ajuda no cabeçalho e faixa de marcas (docs/BRIEFING.md)"
     },
     {
       "slug": "processo",
