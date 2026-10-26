@@ -47,21 +47,24 @@ export const header = {
 /* -------------------------------------------------------------------- hero */
 
 export const hero = {
-  eyebrow: 'Soluções de impressão',
+  eyebrow: 'Impressão corporativa',
   title: `${site.product} para ${site.context}`,
+  /** Trecho do H1 em verde, em linha própria (precisa estar contido em `title`). */
+  highlight: 'impressoras',
   text: 'Multifuncionais laser Ricoh, copiadoras e scanners para a rotina da sua empresa, com manutenção inclusa e sem investimento inicial.',
   banner: {
     src: heroBg,
-    alt: 'Copiadora multifuncional Ricoh em destaque sobre fundo azul',
+    alt: 'Multifuncionais Ricoh e Canon e impressora Epson em escritório claro',
   },
   points: [
-    { icon: 'shield', line1: 'Desde 2003 em', line2: 'soluções de impressão' },
-    { icon: 'gear', line1: 'Equipamentos modernos', line2: 'com manutenção inclusa' },
-    { icon: 'users', line1: 'Suporte especializado', line2: 'para empresas' },
+    { icon: 'shield', line1: 'Desde 2003', line2: 'no mercado' },
+    { icon: 'wrench', line1: 'Manutenção', line2: 'inclusa' },
+    { icon: 'users', line1: 'Suporte', line2: 'especializado' },
   ],
 } as const satisfies {
   eyebrow: string
   title: string
+  highlight: string
   text: string
   banner: Photo
   points: readonly [HeroPoint, HeroPoint, HeroPoint]

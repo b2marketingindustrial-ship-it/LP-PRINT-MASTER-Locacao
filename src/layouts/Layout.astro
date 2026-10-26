@@ -21,7 +21,7 @@ const { title = defaultTitle, description = defaultDescription } = Astro.props
 // Preload do LCP: mesmas larguras/formatos que o <Picture> do Hero.
 const heroPreload640 = await getImage({ src: hero.banner.src, width: 640, format: 'webp' })
 const heroPreload1024 = await getImage({ src: hero.banner.src, width: 1024, format: 'webp' })
-const heroPreload1981 = await getImage({ src: hero.banner.src, width: 1981, format: 'webp' })
+const heroPreload1870 = await getImage({ src: hero.banner.src, width: 1870, format: 'webp' })
 const ogLogo = await getImage({ src: logoImg, width: 512, format: 'webp' })
 
 const ogImage = new URL(ogLogo.src, site.url).href
@@ -65,9 +65,9 @@ const jsonLd = {
     <link
       rel="preload"
       as="image"
-      href={heroPreload1981.src}
-      imagesrcset={`${heroPreload640.src} 640w, ${heroPreload1024.src} 1024w, ${heroPreload1981.src} 1981w`}
-      imagesizes="100vw"
+      href={heroPreload1870.src}
+      imagesrcset={`${heroPreload640.src} 640w, ${heroPreload1024.src} 1024w, ${heroPreload1870.src} 1870w`}
+      imagesizes="(min-width: 1024px) 1600px, 100vw"
       fetchpriority="high"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

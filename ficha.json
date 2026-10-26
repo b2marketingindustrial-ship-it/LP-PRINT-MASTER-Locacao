@@ -1,6 +1,6 @@
 {
   "ficha": 1,
-  "gerado": "2026-10-26T13:10:32.288Z",
+  "gerado": "2026-10-26T14:06:17.497Z",
   "origem": "docs/FICHA-LP.md",
   "padrao": "2.8.0",
   "cliente": "Print Master",
@@ -105,30 +105,35 @@
     "autorizacao": "não solicitada — a Ricoh aparece só por extenso"
   },
   "tokens": {
-    "padrao": true
+    "padrao": false,
+    "cores": {
+      "primaria": "#064337",
+      "acao": "#027653",
+      "menta": "#61e5a9"
+    }
   },
   "conteudo": {
     "title": null,
     "description": "Locação de impressoras para empresas em Goiânia: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.",
     "hero": {
-      "eyebrow": "Soluções de impressão",
+      "eyebrow": "Impressão corporativa",
       "title": "Locação de impressoras para empresas",
       "text": "Multifuncionais laser Ricoh, copiadoras e scanners para a rotina da sua empresa, com manutenção inclusa e sem investimento inicial.",
       "points": [
         {
           "icon": "shield",
-          "line1": "Desde 2003 em",
-          "line2": "soluções de impressão"
+          "line1": "Desde 2003",
+          "line2": "no mercado"
         },
         {
-          "icon": "gear",
-          "line1": "Equipamentos modernos",
-          "line2": "com manutenção inclusa"
+          "icon": "wrench",
+          "line1": "Manutenção",
+          "line2": "inclusa"
         },
         {
           "icon": "users",
-          "line1": "Suporte especializado",
-          "line2": "para empresas"
+          "line1": "Suporte",
+          "line2": "especializado"
         }
       ]
     },

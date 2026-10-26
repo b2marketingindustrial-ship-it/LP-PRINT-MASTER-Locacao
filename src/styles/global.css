@@ -3,18 +3,24 @@
 /* ---------------------------------------------------------------------------
    Tokens do padrão B2 (PROMPT-PADRAO-LP, item 2).
    Só altere os valores se a entrevista (entrada 21) trouxer cores/fonte do cliente.
+
+   Print Master (26/10/2026): verdes da marca, tirados do logotipo e do mockup de
+   abertura aprovado pelo cliente (docs/BRIEFING.md). Os nomes dos tokens ficam os do
+   padrão — "navy" é o verde profundo e "orange" é o verde de ação.
    --------------------------------------------------------------------------- */
 @theme {
-  --color-primary-dark: #002147;
-  --color-primary-dark-800: #003669;
-  --color-primary-dark-900: #001830;
-  --color-accent-orange: #ff6b00;
-  --color-accent-orange-dark: #e55f00;
+  --color-primary-dark: #064337;
+  --color-primary-dark-800: #0a5a49;
+  --color-primary-dark-900: #032c24;
+  --color-accent-orange: #027653;
+  --color-accent-orange-dark: #025f43;
+  --color-brand-mint: #61e5a9;
+  --color-brand-mint-soft: #e6f9f1;
   --color-neutral-light: #ffffff;
-  --color-neutral-gray-100: #f5f7fa;
+  --color-neutral-gray-100: #f2f8f6;
   --color-neutral-gray-200: #a0a0a0;
-  --color-ink: #1b2733;
-  --color-ink-soft: #44546a;
+  --color-ink: #10201b;
+  --color-ink-soft: #4a5c56;
 
   --container-page: 1320px;
 
@@ -102,7 +108,7 @@
   }
 }
 
-/* Badge de vidro com brilho interno laranja. */
+/* Badge de vidro com brilho interno da cor de ação. */
 @utility glass-badge {
   background-image: linear-gradient(
     160deg,
@@ -112,7 +118,7 @@
   border: 1px solid rgb(255 255 255 / 0.16);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.22),
-    inset 0 -10px 14px -10px rgb(255 107 0 / 0.45),
+    inset 0 -10px 14px -10px rgb(97 229 169 / 0.45),
     0 12px 22px -14px rgb(0 0 0 / 0.85);
 }
 

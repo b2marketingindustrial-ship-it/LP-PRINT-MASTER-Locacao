@@ -92,25 +92,30 @@ marcas:
   autorizacao: não solicitada — a Ricoh aparece só por extenso
 
 tokens:
-  padrao: true
+  padrao: false
+  # verdes do logotipo e do mockup de abertura aprovado em 26/10/2026; fonte Manrope mantida
+  cores:
+    primaria: '#064337'
+    acao: '#027653'
+    menta: '#61e5a9'
 
 conteudo:
   title: null
   description: 'Locação de impressoras para empresas em Goiânia: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
   hero:
-    eyebrow: Soluções de impressão
+    eyebrow: Impressão corporativa
     title: Locação de impressoras para empresas
     text: Multifuncionais laser Ricoh, copiadoras e scanners para a rotina da sua empresa, com manutenção inclusa e sem investimento inicial.
     points:
       - icon: shield
-        line1: Desde 2003 em
-        line2: soluções de impressão
-      - icon: gear
-        line1: Equipamentos modernos
-        line2: com manutenção inclusa
+        line1: Desde 2003
+        line2: no mercado
+      - icon: wrench
+        line1: Manutenção
+        line2: inclusa
       - icon: users
-        line1: Suporte especializado
-        line2: para empresas
+        line1: Suporte
+        line2: especializado
   quote:
     eyebrow: Solicite sua cotação
     title: Fale com quem entende de locação de impressoras.
@@ -297,7 +302,9 @@ LP de serviço para a campanha de locação de impressoras da Print Master, com 
 
 A oferta abre em `linhas` com as quatro categorias do material: multifuncionais laser Ricoh, copiadoras, scanners inteligentes e equipamentos conectados (card escuro). O apoio mostra o caminho do atendimento em `processo`. A prova usa as quatro primeiras aplicações do material em `aplicacoes`. A autoridade fecha com a frase de autoridade "Sua empresa mais produtiva e econômica" e os cinco diferenciais do briefing.
 
-As imagens são as da página atual do cliente, nos slots posicionais do padrão. O banner do hero é **provisório**: montado em navy com a copiadora Ricoh MP 4055 do site, até o designer entregar o definitivo.
+As imagens são as da página atual do cliente, nos slots posicionais do padrão.
+
+**Revisão de 26/10/2026, a pedido do usuário:** a abertura (header e hero) foi refeita sobre o mockup enviado — fundo claro, verdes da marca, título em três linhas com "impressoras" em destaque, CTA em pílula e pontos curtos ("Desde 2003 / no mercado", "Manutenção / inclusa", "Suporte / especializado"). O banner do hero passou a ser a foto enviada junto (multifuncionais Ricoh e Canon e impressora Epson em escritório claro). Os tokens de cor saíram do padrão para os verdes da marca, em toda a página.
 
 A Ricoh aparece **só por extenso**. Não há claims proibidos no material.
 
@@ -327,7 +334,7 @@ A Ricoh aparece **só por extenso**. Não há claims proibidos no material.
 | 3   | PRODUTO_PRINCIPAL  | Locação de impressoras                                                      | briefing                                   |
 | 4   | CONTEXTO_DE_USO    | empresas                                                                    | página atual ("para empresas")             |
 | 5   | PUBLICO            | Administrativo, Compras, TI, Diretoria                                      | **inferido** — cargos ausentes no material |
-| 6   | HERO               | desde 2003, equipamentos com manutenção inclusa, suporte                    | briefing                                   |
+| 6   | HERO               | desde 2003, manutenção inclusa, suporte especializado                       | briefing; forma curta do mockup (26/10)    |
 | 7   | MARCAS_ATENDIDAS   | Ricoh, só por extenso                                                       | briefing; uso de logo não decidido         |
 | 8   | SELOS_DE_CONFIANCA | manutenção inclusa, suporte remoto e presencial, sede em Goiânia            | briefing e endereço                        |
 | 9   | ENDERECO           | Rua C56 nº 65, Qd. 103, Lt. 05, Setor Sudoeste, Goiânia/GO                  | briefing                                   |
@@ -335,14 +342,13 @@ A Ricoh aparece **só por extenso**. Não há claims proibidos no material.
 | 11  | SHORTCODES         | padrão do plugin                                                            | default                                    |
 | 12  | WHATSAPP           | sem botão flutuante                                                         | ausente no material                        |
 | 13  | STACK + PUBLICACAO | padrão da agência + prévia na Vercel                                        | default                                    |
-| 14  | TOKENS + FONTE     | visual padrão                                                               | default (manual da marca ausente)          |
+| 14  | TOKENS + FONTE     | verdes da marca (#064337, #027653, #61e5a9); Manrope                        | logotipo e mockup de abertura (26/10)      |
 | 15  | CAMPANHA           | `locação de impressoras`                                                    | briefing                                   |
 
 ## Pendências
 
 | O que falta                             | Quem resolve        | Especificação                                                                          |
 | --------------------------------------- | ------------------- | -------------------------------------------------------------------------------------- |
-| Banner definitivo do hero               | designer            | hoje é provisório (MP 4055 sobre navy); 1981×900, assunto entre 62% e 79% da largura   |
 | Fotos de produto recortadas             | cliente             | as do site vêm com fundo branco; PNG 800×600 com fundo transparente                    |
 | Foto de "equipamentos conectados"       | cliente             | hoje é o ícone de nuvem do site; foto real de equipamento, 1280×800                    |
 | Fotos das aplicações em alta            | cliente ou banco    | as do site têm 740 a 996 px de largura; pedir 1200×900                                 |
