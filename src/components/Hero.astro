@@ -59,7 +59,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
           {hero.eyebrow}
         </span>
 
-        <h1 class="mt-4 font-display text-[2.7rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-ink sm:text-[3.4rem] lg:text-[3.1rem] xl:text-[3.9rem]">
+        <h1 class="mt-4 font-display text-[2.7rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-ink sm:text-[3.4rem] lg:text-[2.9rem] xl:text-[3.9rem]">
           {titleBefore}
           {at >= 0 && <span class="hero-highlight block text-accent-orange">{hero.highlight}</span>}
           {titleAfter}
@@ -218,7 +218,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
 <style>
   /* Medidas que amarram as colunas, os véus e a foto ao mesmo eixo. */
   .hero {
-    --text-col: 420px;
+    --text-col: 400px;
     --chat-col: 300px;
     --col-gap: 2rem;
     --page-half: calc(var(--container-page) / 2);
@@ -303,6 +303,14 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
         rgb(247 253 251 / 0.7) calc(100% - 150px),
         transparent 100%
       );
+    }
+  }
+
+  /* 1024–1279px: a janela é estreita; o grupo de impressoras desliza para a direita, sob o
+     chat, para não passar por trás do texto. */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .hero-photo {
+      transform: translateX(-44%);
     }
   }
 
