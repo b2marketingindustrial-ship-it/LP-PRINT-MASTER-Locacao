@@ -13,7 +13,6 @@ import { Picture } from 'astro:assets'
 import Icon from './Icon.astro'
 import Button from './Button.astro'
 import { hero, cta } from '../data/content'
-import { site } from '../data/site'
 
 const isDev = import.meta.env.DEV
 
@@ -24,7 +23,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
 ---
 
 <section
-  class="hero relative isolate overflow-hidden border-b border-primary-dark/10 bg-[linear-gradient(180deg,#f7fdfb_0%,#ffffff_100%)]"
+  class="hero relative isolate overflow-hidden rounded-b-[40px] bg-[linear-gradient(180deg,#f7fdfb_0%,#ffffff_100%)] shadow-[0_28px_56px_-40px_rgba(6,67,55,0.45)] lg:rounded-b-[64px]"
   data-hero
 >
   {/* z2 — véus claros sobre a foto (desktop) */}
@@ -125,44 +124,15 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       </div>
 
       {/* Coluna 3 — shortcode do chat (300px) */}
-      <div class="hero-chat relative z-[3] flex min-h-[510px] w-full flex-col lg:w-[300px]">
-        {/*
-          Prévia do chat: só aparece fora do WordPress (Vercel, local), quando o shortcode
-          chega cru. No WordPress o plugin troca o shortcode pelo chat e isto fica oculto.
-          A coluna reserva 510px (a altura do widget do plugin) para a troca não deslocar o layout.
-        */}
-        <div
-          data-shortcode-preview
-          hidden
-          class="flex flex-1 flex-col overflow-hidden rounded-3xl border border-primary-dark/10 bg-neutral-light shadow-[0_30px_60px_-30px_rgba(6,67,55,0.5)]"
-        >
-          <div class="flex items-center gap-3 bg-primary-dark px-5 py-4">
-            <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-mint/15 text-brand-mint ring-1 ring-brand-mint/40">
-              <Icon name="chat" class="size-5" />
-            </span>
-            <span>
-              <span class="block font-display text-[15px] font-bold text-neutral-light">
-                Atendimento Print Master
-              </span>
-              <span class="flex items-center gap-1.5 font-sans text-[12px] text-neutral-light/70">
-                <span aria-hidden="true" class="size-2 rounded-full bg-brand-mint"></span>
-                Chat de atendimento
-              </span>
-            </span>
-          </div>
-          <div class="space-y-3 px-5 pt-5" aria-hidden="true">
-            <div class="h-14 w-[85%] rounded-2xl rounded-tl-md bg-neutral-gray-100"></div>
-            <div class="ml-auto h-9 w-[55%] rounded-2xl rounded-tr-md bg-brand-mint-soft"></div>
-            <div class="h-10 w-[70%] rounded-2xl rounded-tl-md bg-neutral-gray-100"></div>
-            <div class="flex gap-2 pt-1">
-              <div class="h-9 flex-1 rounded-full ring-1 ring-brand-mint/60"></div>
-              <div class="h-9 flex-1 rounded-full ring-1 ring-brand-mint/60"></div>
-            </div>
-          </div>
-          <p class="mt-auto px-6 pt-5 pb-6 text-center font-sans text-[12.5px] leading-relaxed text-ink-soft">
-            O chat da {site.brandShort} abre aqui na página publicada.
-          </p>
-        </div>
+      {/*
+        Espaço do chat: vazio na prévia fora do WordPress (o texto cru do shortcode é apagado
+        pelo script abaixo); no WordPress o plugin troca o shortcode pelo chat. A coluna reserva
+        510px (a altura do widget do plugin) para a troca não deslocar o layout.
+      */}
+      <div
+        class="hero-chat relative z-[3] flex min-h-[510px] w-full flex-col lg:w-[300px]"
+        data-shortcode-slot
+      >
         <slot name="shortcode">
           {isDev ? (
             <div
@@ -330,21 +300,18 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
     })
   }
 
-  // Fora do WordPress o shortcode do chat chega como texto cru ("[atendimento_chat …]"):
-  // esconde o texto e mostra a prévia. No WordPress o plugin já o trocou e nada muda.
+  // Fora do WordPress os shortcodes (chat do hero, formulário da cotação) chegam como texto
+  // cru ("[atendimento_chat …]"): apaga o texto e deixa o espaço reservado vazio. No WordPress
+  // o plugin já os trocou e nada muda.
   if (!/wordpress|printmaster\.net\.br/i.test(location.hostname)) {
-    document.querySelectorAll<HTMLElement>('[data-shortcode-preview]').forEach((preview) => {
-      const holder = preview.parentElement
-      if (!holder) return
-      const raw = [...holder.childNodes].filter((n) => n !== preview)
-      const text = raw
+    document.querySelectorAll<HTMLElement>('[data-shortcode-slot]').forEach((holder) => {
+      const nodes = [...holder.childNodes]
+      const text = nodes
         .map((n) => n.textContent ?? '')
         .join('')
         .trim()
-      const onlyText = raw.every((n) => n.nodeType === Node.TEXT_NODE)
-      if (!onlyText || !/^\[[^\]]+\]$/.test(text)) return
-      raw.forEach((n) => n.remove())
-      preview.hidden = false
+      const onlyText = nodes.every((n) => n.nodeType === Node.TEXT_NODE)
+      if (onlyText && /^\[[^\]]+\]$/.test(text)) nodes.forEach((n) => n.remove())
     })
   }
 </script>

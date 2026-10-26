@@ -43,7 +43,9 @@
   }
 
   body {
-    @apply bg-neutral-light font-sans text-ink antialiased;
+    /* Cinza-menta, e não branco: é o fundo que aparece nos cantos arredondados entre as
+       seções (hero, bloco de diferenciais e cotação). */
+    @apply bg-neutral-gray-100 font-sans text-ink antialiased;
   }
 
   .font-display {
