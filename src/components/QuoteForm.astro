@@ -2,134 +2,183 @@
 /**
  * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.4). Grid 1.05fr · 1fr: formulário (shortcode) à esquerda, texto à direita.
  * Mobile: texto antes do formulário. O formulário é sempre o shortcode, nunca um <form> próprio.
+ *
+ * Desvio visual aprovado para a Print Master (mockup de 26/10/2026, docs/BRIEFING.md): fundo
+ * verde-escuro, o shortcode dentro de um card branco com cabeçalho e nota de privacidade,
+ * título com o trecho final em menta, WhatsApp em verde vivo e selos com divisórias.
  */
 import Icon from './Icon.astro'
-import Eyebrow from './Eyebrow.astro'
-import { quote, cta } from '../data/content'
+import { quote } from '../data/content'
 import { site } from '../data/site'
 
 const isDev = import.meta.env.DEV
+
+const at = quote.title.indexOf(quote.highlight)
+const titleBefore = at >= 0 ? quote.title.slice(0, at) : quote.title
 ---
 
-<section id="cotacao" class="bg-neutral-gray-100 pt-8 pb-20">
-  <div class="mx-auto max-w-page px-6 lg:px-10">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
-      {/* Coluna do formulário */}
-      <div class="order-2 w-full lg:order-1">
-        {/*
-          Prévia do formulário: só aparece fora do WordPress, quando o shortcode chega cru
-          (o script do Hero faz a troca). A coluna reserva 520px para a troca não deslocar nada.
-        */}
-        <div class="flex min-h-[520px] flex-col">
-          <div
-            data-shortcode-preview
-            hidden
-            class="flex flex-1 flex-col overflow-hidden rounded-3xl border border-primary-dark/10 bg-neutral-light shadow-[0_30px_60px_-30px_rgba(6,67,55,0.45)]"
-          >
-            <div class="flex items-center gap-3 bg-primary-dark px-6 py-4">
-              <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-mint/15 text-brand-mint ring-1 ring-brand-mint/40">
-                <Icon name="file-text" class="size-5" />
-              </span>
-              <span>
-                <span class="block font-display text-[15px] font-bold text-neutral-light">
-                  Formulário de cotação
-                </span>
-                <span class="block font-sans text-[12px] text-neutral-light/70">{site.brand}</span>
-              </span>
-            </div>
-            <div class="grid gap-3 px-6 pt-6 sm:grid-cols-2" aria-hidden="true">
-              <div class="h-11 rounded-xl bg-neutral-gray-100 ring-1 ring-primary-dark/5"></div>
-              <div class="h-11 rounded-xl bg-neutral-gray-100 ring-1 ring-primary-dark/5"></div>
-              <div class="h-11 rounded-xl bg-neutral-gray-100 ring-1 ring-primary-dark/5"></div>
-              <div class="h-11 rounded-xl bg-neutral-gray-100 ring-1 ring-primary-dark/5"></div>
-              <div class="h-28 rounded-xl bg-neutral-gray-100 ring-1 ring-primary-dark/5 sm:col-span-2"></div>
-              <div class="h-12 w-full rounded-full bg-accent-orange/85 sm:w-48"></div>
-            </div>
-            <p class="mt-auto px-6 pt-5 pb-6 font-sans text-[12.5px] leading-relaxed text-ink-soft">
-              O formulário de cotação abre aqui na página publicada.
-            </p>
-          </div>
-          <slot name="shortcode">
-            {isDev ? (
-              <div
-                class="flex min-h-[520px] w-full flex-col gap-3 rounded-2xl border border-neutral-gray-200/70 bg-neutral-light p-6 shadow-[0_14px_32px_-26px_rgba(0,24,48,0.5)]"
-                aria-label="Mock do formulário (só em desenvolvimento)"
-              >
-                <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
-                  Mock · formulário
-                </span>
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
-                  <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
-                  <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
-                  <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
-                  <div class="h-28 rounded border border-neutral-gray-200/70 bg-neutral-gray-100 sm:col-span-2" />
-                </div>
-                <div class="mt-auto h-12 w-full rounded bg-accent-orange/80 sm:w-48" />
-              </div>
-            ) : (
-              <div class="flex min-h-[520px] w-full flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-primary-dark/25 bg-neutral-light p-8 text-center shadow-[0_14px_32px_-26px_rgba(0,24,48,0.5)]">
-                <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
-                  Espaço reservado
-                </span>
-                <p class="font-display text-lg font-bold text-ink">
-                  Shortcode — formulário de cotação
-                </p>
-              </div>
-            )}
-          </slot>
-        </div>
+<section id="cotacao" class="quote-section relative isolate overflow-hidden pt-8 pb-20">
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-40 -left-32 -z-10 size-[520px] rounded-full bg-brand-mint/10 blur-3xl"
+  ></span>
 
-        {/* Nota de LGPD */}
-        <p class="mt-3 font-sans text-[11px] leading-relaxed text-ink-soft/80">
-          {quote.lgpd}
-          {site.privacyUrl && (
-            <>
-              {' '}
-              <a
-                href={site.privacyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-semibold text-primary-dark underline-offset-2 hover:underline"
+  <div class="mx-auto max-w-page px-6 pt-10 lg:px-10 lg:pt-14">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+      {/* Coluna do formulário: card branco em volta do shortcode do plugin */}
+      <div class="order-2 w-full lg:order-1">
+        <div class="rounded-[22px] bg-neutral-light p-6 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] sm:p-9">
+          <div class="flex items-center gap-4 sm:gap-5">
+            <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-mint-soft text-primary-dark sm:size-16">
+              <Icon name="file-text" class="size-6 sm:size-7" />
+            </span>
+            <div>
+              <p class="font-display text-[1.45rem] leading-tight font-extrabold text-primary-dark sm:text-[1.75rem]">
+                {quote.form.title}
+              </p>
+              <p class="mt-1 font-sans text-[15px] leading-snug text-ink-soft">{quote.form.text}</p>
+            </div>
+          </div>
+
+          {/*
+            Prévia do formulário: só aparece fora do WordPress, quando o shortcode chega cru
+            (o script do Hero faz a troca). A área reserva 460px para a troca não deslocar nada.
+          */}
+          <div class="mt-7 flex min-h-[460px] flex-col">
+            <div
+              data-shortcode-preview
+              hidden
+              class="flex flex-1 flex-col"
+              aria-label="Prévia do formulário — no WordPress este espaço mostra o formulário do plugin"
+            >
+              <div class="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-5" aria-hidden="true">
+                {quote.formPreview.fields.map((field) => (
+                  <div>
+                    <p class="font-sans text-[13.5px] font-semibold text-ink">{field}</p>
+                    <div class="mt-2 h-12 rounded-xl border border-neutral-gray-200/70 bg-neutral-gray-100/70" />
+                  </div>
+                ))}
+                <div class="col-span-2">
+                  <p class="font-sans text-[13.5px] font-semibold text-ink">
+                    {quote.formPreview.message}
+                  </p>
+                  <div class="mt-2 h-28 rounded-xl border border-neutral-gray-200/70 bg-neutral-gray-100/70 p-4 font-sans text-[14px] text-ink-soft">
+                    {quote.formPreview.placeholder}
+                  </div>
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                class="mt-6 flex h-14 items-center justify-center gap-3 rounded-xl bg-primary-dark font-sans text-[17px] font-bold text-neutral-light"
               >
-                Política de privacidade
-              </a>
-              .
-            </>
-          )}
-        </p>
+                {quote.formPreview.button}
+                <Icon name="arrow-right" class="size-5" />
+              </div>
+              <p class="mt-2 text-center font-sans text-[11.5px] text-ink-soft">
+                Prévia — no WordPress este espaço mostra o formulário do plugin.
+              </p>
+            </div>
+            <slot name="shortcode">
+              {isDev ? (
+                <div
+                  class="flex min-h-[460px] w-full flex-col gap-3 rounded-2xl border border-neutral-gray-200/70 bg-neutral-light p-6"
+                  aria-label="Mock do formulário (só em desenvolvimento)"
+                >
+                  <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
+                    Mock · formulário
+                  </span>
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
+                    <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
+                    <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
+                    <div class="h-11 rounded border border-neutral-gray-200/70 bg-neutral-gray-100" />
+                    <div class="h-28 rounded border border-neutral-gray-200/70 bg-neutral-gray-100 sm:col-span-2" />
+                  </div>
+                  <div class="mt-auto h-12 w-full rounded bg-accent-orange/80 sm:w-48" />
+                </div>
+              ) : (
+                <div class="flex min-h-[460px] w-full flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-primary-dark/25 bg-neutral-light p-8 text-center">
+                  <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
+                    Espaço reservado
+                  </span>
+                  <p class="font-display text-lg font-bold text-ink">
+                    Shortcode — formulário de cotação
+                  </p>
+                </div>
+              )}
+            </slot>
+          </div>
+
+          {/* Nota de LGPD */}
+          <p class="mt-5 flex items-start gap-2.5 font-sans text-[13px] leading-relaxed text-ink-soft">
+            <Icon name="lock" class="mt-0.5 size-4 shrink-0 text-ink-soft" />
+            <span>
+              {quote.lgpd}
+              {site.privacyUrl && (
+                <>
+                  {' '}
+                  <a
+                    href={site.privacyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-semibold text-primary-dark underline-offset-2 hover:underline"
+                  >
+                    Política de privacidade
+                  </a>
+                  .
+                </>
+              )}
+            </span>
+          </p>
+        </div>
       </div>
 
       {/* Coluna de texto */}
       <div class="order-1 lg:order-2">
-        <Eyebrow>{quote.eyebrow}</Eyebrow>
+        <span class="inline-flex items-center gap-4 font-sans text-[12.5px] font-semibold tracking-[0.2em] text-neutral-light/85 uppercase">
+          <span aria-hidden="true" class="h-[3px] w-10 rounded-full bg-brand-mint"></span>
+          {quote.eyebrow}
+        </span>
 
-        <h2 class="mt-3 font-display text-3xl leading-tight font-extrabold text-ink sm:text-4xl">
-          {quote.title}
+        <h2 class="mt-5 font-display text-[2.4rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3.1rem] xl:text-[3.5rem]">
+          {titleBefore}
+          {at >= 0 && <span class="block text-brand-mint">{quote.highlight}</span>}
         </h2>
 
-        <span aria-hidden="true" class="mt-5 block h-[3px] w-16 bg-accent-orange"></span>
-
-        <p class="mt-5 font-sans text-[15px] leading-relaxed text-ink-soft sm:text-base">
+        <p class="mt-6 font-sans text-[17px] leading-relaxed text-neutral-light/85 sm:text-[19px]">
           {quote.text}
         </p>
 
-        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <p class="mt-8 font-sans text-[16px] font-medium text-neutral-light/85">
+          {quote.whatsappLead}
+        </p>
+        <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
           <button
             type="button"
             data-cta="cotacao-whatsapp"
-            class="btn-slave-whats inline-flex items-center justify-center gap-2.5 rounded-full bg-primary-dark px-6 py-3.5 font-sans text-[15px] font-semibold text-neutral-light transition-colors duration-200 hover:bg-primary-dark-800"
+            class="btn-slave-whats group inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#17a463] px-5 py-4 font-sans text-[19px] font-bold whitespace-nowrap sm:gap-3 sm:px-7 text-neutral-light shadow-[0_18px_36px_-18px_rgba(0,0,0,0.55)] transition-colors duration-200 hover:bg-[#139257]"
           >
-            <Icon name="whatsapp" class="size-4 shrink-0" />
-            {cta.whatsapp}
+            <Icon name="whatsapp" class="size-6 shrink-0" />
+            {quote.whatsappCta}
+            <Icon
+              name="arrow-right"
+              class="size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+            />
           </button>
         </div>
 
-        <ul class="mt-7 flex flex-wrap gap-x-6 gap-y-2.5">
+        <span aria-hidden="true" class="mt-9 block h-px bg-neutral-light/15"></span>
+
+        <ul
+          class="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-x-0"
+          aria-label="Garantias"
+        >
           {quote.trust.map((item) => (
-            <li class="flex items-center gap-2 font-sans text-[13px] font-medium text-ink">
-              <Icon name={item.icon} class="size-4 shrink-0 text-accent-orange" />
-              {item.label}
+            <li class="flex items-center gap-3 sm:border-l sm:border-neutral-light/15 sm:px-4 sm:first:border-l-0 sm:first:pl-0">
+              <Icon name={item.icon} class="size-7 shrink-0 text-brand-mint" />
+              <span class="max-w-[8.5rem] font-sans text-[13.5px] leading-snug font-medium text-balance text-neutral-light/90 sm:text-[15px]">
+                {item.label}
+              </span>
             </li>
           ))}
         </ul>
@@ -137,3 +186,16 @@ const isDev = import.meta.env.DEV
     </div>
   </div>
 </section>
+
+<style>
+  .quote-section {
+    background:
+      radial-gradient(1000px 520px at 15% -10%, rgb(97 229 169 / 0.16) 0%, transparent 60%),
+      linear-gradient(
+        165deg,
+        #0b6a53 0%,
+        var(--color-primary-dark) 55%,
+        var(--color-primary-dark-900) 100%
+      );
+  }
+</style>

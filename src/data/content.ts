@@ -73,21 +73,51 @@ export const hero = {
 /* ----------------------------------------------------------------- cotação */
 
 export const quote = {
-  eyebrow: 'Solicite sua cotação',
-  title: `Fale com quem entende de ${site.product.toLowerCase()}.`,
-  text: 'Nossa equipe indica o equipamento ideal para a sua necessidade e monta a proposta de locação. Preencha o formulário ou fale direto conosco pelo WhatsApp.',
+  eyebrow: 'Soluções para sua empresa',
+  title: 'A impressão ideal para o ritmo da sua empresa.',
+  /** Trecho final do título em menta (precisa estar contido em `title`). */
+  highlight: 'sua empresa.',
+  text: 'Locação de impressoras com tecnologia, manutenção e suporte para simplificar a rotina da sua empresa.',
+  /** Chamada acima do botão de WhatsApp e o rótulo dele. */
+  whatsappLead: 'Prefere falar com a nossa equipe?',
+  whatsappCta: 'Conversar no WhatsApp',
   trust: [
     { icon: 'wrench', label: 'Manutenção inclusa' },
     { icon: 'users', label: 'Suporte remoto e presencial' },
-    { icon: 'pin', label: 'Sede em Goiânia/GO' },
+    { icon: 'pin', label: 'Goiânia/GO' },
   ],
+  /** Cabeçalho do card do formulário (o formulário em si é o shortcode do plugin). */
+  form: {
+    title: 'Solicite sua cotação',
+    text: 'Conte o que sua empresa precisa. Nós cuidamos da solução.',
+  },
+  /**
+   * Prévia do formulário, só fora do WordPress (Vercel, local), no lugar do shortcode cru.
+   * No WordPress os campos são os do plugin.
+   */
+  formPreview: {
+    fields: ['Nome', 'Empresa', 'E-mail corporativo', 'WhatsApp'],
+    message: 'Como podemos ajudar?',
+    placeholder: 'Conte sobre sua necessidade de impressão.',
+    button: 'Receber minha proposta',
+  },
   /** Nota de LGPD exibida abaixo do formulário. */
-  lgpd: `Seus dados são usados apenas para responder à sua solicitação de cotação, conforme a LGPD.`,
+  lgpd: 'Seus dados serão usados apenas para responder à sua solicitação.',
 } as const satisfies {
   eyebrow: string
   title: string
+  highlight: string
   text: string
+  whatsappLead: string
+  whatsappCta: string
   trust: readonly [TrustItem, TrustItem, TrustItem]
+  form: { title: string; text: string }
+  formPreview: {
+    fields: readonly [string, string, string, string]
+    message: string
+    placeholder: string
+    button: string
+  }
   lgpd: string
 }
 

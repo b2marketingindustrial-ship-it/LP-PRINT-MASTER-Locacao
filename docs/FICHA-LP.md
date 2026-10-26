@@ -117,17 +117,18 @@ conteudo:
         line1: Suporte
         line2: especializado
   quote:
-    eyebrow: Solicite sua cotação
-    title: Fale com quem entende de locação de impressoras.
-    text: Nossa equipe indica o equipamento ideal para a sua necessidade e monta a proposta de locação. Preencha o formulário ou fale direto conosco pelo WhatsApp.
+    # mockup aprovado em 26/10/2026
+    eyebrow: Soluções para sua empresa
+    title: A impressão ideal para o ritmo da sua empresa.
+    text: Locação de impressoras com tecnologia, manutenção e suporte para simplificar a rotina da sua empresa.
     trust:
       - icon: wrench
         label: Manutenção inclusa
       - icon: users
         label: Suporte remoto e presencial
       - icon: pin
-        label: Sede em Goiânia/GO
-    lgpd: Seus dados são usados apenas para responder à sua solicitação de cotação, conforme a LGPD.
+        label: Goiânia/GO
+    lgpd: Seus dados serão usados apenas para responder à sua solicitação.
 
 blocos:
   linhas:
