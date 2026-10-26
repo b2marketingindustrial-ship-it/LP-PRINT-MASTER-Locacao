@@ -1,6 +1,6 @@
 {
   "ficha": 1,
-  "gerado": "2026-10-26T15:23:50.580Z",
+  "gerado": "2026-10-26T15:55:07.915Z",
   "origem": "docs/FICHA-LP.md",
   "padrao": "2.8.0",
   "cliente": "Print Master",
@@ -281,11 +281,11 @@
       "dataExport": "why",
       "data": "diferenciais.ts",
       "conteudo": {
-        "eyebrow": "Por que a Print Master",
-        "titleLines": ["Sua empresa mais", "produtiva e econômica."],
-        "text": "Desde 2003, a Print Master é referência em soluções de impressão, cópias e digitalização de documentos para empresas de todos os portes.",
-        "scene": "Profissional digitando em mesa de escritório",
-        "person": "Impressoras multifuncionais, copiadoras, plotter e scanners",
+        "eyebrow": "Soluções Print Master",
+        "titleLines": ["Impressão inteligente", "para sua empresa."],
+        "text": "Tecnologia, suporte e gestão para imprimir melhor, reduzir custos e simplificar a rotina da sua empresa.",
+        "cta": "Solicite uma proposta",
+        "scene": "Multifuncional Ricoh em escritório iluminado com plantas e estações de trabalho",
         "reasons": [
           {
             "icon": "tag",

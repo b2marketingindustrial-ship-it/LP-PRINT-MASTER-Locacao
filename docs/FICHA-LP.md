@@ -249,11 +249,12 @@ blocos:
     veredicto: completo
     responde: [locacao-aluguel]
     papeis: [Diretoria, Compras]
-    eyebrow: Por que a Print Master
-    titleLines: [Sua empresa mais, produtiva e econômica.]
-    text: Desde 2003, a Print Master é referência em soluções de impressão, cópias e digitalização de documentos para empresas de todos os portes.
-    scene: Profissional digitando em mesa de escritório
-    person: Impressoras multifuncionais, copiadoras, plotter e scanners
+    # variante local do mockup aprovado em 26/10/2026: foto de fundo, sem pessoa recortada
+    eyebrow: Soluções Print Master
+    titleLines: [Impressão inteligente, para sua empresa.]
+    text: Tecnologia, suporte e gestão para imprimir melhor, reduzir custos e simplificar a rotina da sua empresa.
+    cta: Solicite uma proposta
+    scene: Multifuncional Ricoh em escritório iluminado com plantas e estações de trabalho
     reasons:
       - icon: tag
         title: Redução de custos

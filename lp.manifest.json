@@ -225,17 +225,9 @@
           "width": 1600,
           "height": 900,
           "alpha": false
-        },
-        {
-          "dir": "diferenciais",
-          "match": "pessoa",
-          "files": "pessoa.png",
-          "spec": "Pessoa recortada de corpo inteiro, 1220×1000, fundo transparente",
-          "width": 1220,
-          "height": 1000,
-          "alpha": true
         }
-      ]
+      ],
+      "localVariant": "Print Master 26/10/2026 — mockup: bloco sobre a foto do escritório com a multifuncional, sem a pessoa recortada (docs/BRIEFING.md)"
     }
   ]
 }

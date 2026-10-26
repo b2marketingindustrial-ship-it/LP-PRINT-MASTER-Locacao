@@ -2,17 +2,15 @@
 /**
  * Diferenciais — fase "autoridade" da biblioteca B2.
  *
- * Bloco navy em largura total (por isso `container={false}`) com 5 cards
- * sobrepostos à sua base. É a segunda seção que carrega bloco navy: o respiro
- * escuro da segunda metade, imediatamente antes da conversão.
+ * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
+ * bloco em largura total sobre a foto do escritório com a multifuncional (o degradê
+ * verde à esquerda já vem na imagem), texto sobre a parte verde e 5 cards sobrepostos
+ * à base. Continua sendo o bloco escuro da segunda metade, antes da conversão.
  */
-import { Picture, Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
-import Button from '@components/Button.astro'
-import Eyebrow from '@components/Eyebrow.astro'
 import type { SectionProps } from '@lib/layout'
-import { cta } from '@data/content'
 import { why } from '@data/sections/diferenciais'
 
 type Props = SectionProps
@@ -20,43 +18,33 @@ type Props = SectionProps
 const { tone, rhythm } = Astro.props
 ---
 
-<Section id="diferenciais" tone={tone} rhythm={rhythm} container={false} class="relative">
-  {/* Bloco navy em largura total */}
-  <div class="why-hero navy-premium relative overflow-hidden">
-    <span aria-hidden="true" class="why-grid pointer-events-none absolute inset-0"></span>
+<Section id="diferenciais" tone={tone} rhythm={rhythm} container={false} class="relative" data-why>
+  {/* Bloco em largura total sobre a foto */}
+  <div class="why-hero relative overflow-hidden bg-primary-dark">
+    <Picture
+      src={why.scene.src}
+      alt={why.scene.alt}
+      widths={[640, 1024, 1536, 1890]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      fallbackFormat="webp"
+      loading="lazy"
+      decoding="async"
+      class="why-scene absolute inset-0 h-full w-full object-cover"
+      pictureAttributes={{ class: 'absolute inset-0 h-full w-full' }}
+    />
+    <span aria-hidden="true" class="why-veil pointer-events-none absolute inset-0"></span>
 
-    {/* Foto de cenário sangrando à direita (desktop) e no topo (mobile) */}
-    <div class="absolute inset-y-0 right-0 w-full lg:w-[52%] xl:w-1/2">
-      <Picture
-        src={why.scene.src}
-        alt={why.scene.alt}
-        widths={[640, 1024, 1600]}
-        sizes="(min-width: 1024px) 52vw, 100vw"
-        formats={['avif', 'webp']}
-        fallbackFormat="webp"
-        loading="lazy"
-        decoding="async"
-        class="absolute inset-0 h-full w-full object-cover object-[40%_center]"
-        pictureAttributes={{ class: 'absolute inset-0 h-full w-full' }}
-      />
-      <span
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/20 to-transparent lg:bg-gradient-to-r lg:from-primary-dark lg:via-primary-dark/25 lg:to-transparent"
-      ></span>
-      <span
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-x-0 bottom-0 hidden h-2/5 bg-gradient-to-t from-primary-dark-900 to-transparent lg:block"
-      ></span>
-    </div>
-
-    <div class="relative mx-auto w-full max-w-page px-6 pt-10 pb-8 lg:px-10 lg:pt-10 lg:pb-24">
-      <span
-        aria-hidden="true"
-        class="pointer-events-none absolute top-5 left-6 hidden size-[18px] border-t-2 border-l-2 border-accent-orange opacity-90 lg:top-8 lg:left-10 lg:block"
-      ></span>
-      <div class="max-w-xl lg:max-w-[46%]">
-        <Eyebrow tone="light">{why.eyebrow}</Eyebrow>
-        <h2 class="mt-3 font-display text-3xl leading-[1.1] font-extrabold text-neutral-light sm:text-4xl xl:text-[44px]">
+    <div class="relative z-[2] mx-auto w-full max-w-page px-6 pt-14 pb-28 lg:px-10 lg:pt-20 lg:pb-36">
+      <div class="relative max-w-xl lg:max-w-[680px]">
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute -top-4 -left-0 size-[18px] border-t-2 border-l-2 border-brand-mint"
+        ></span>
+        <span class="inline-flex items-center pl-5 font-sans text-[12.5px] font-bold tracking-[0.22em] text-neutral-light/85 uppercase">
+          {why.eyebrow}
+        </span>
+        <h2 class="mt-4 font-display text-[2.3rem] leading-[1.06] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3.1rem] xl:text-[3.4rem]">
           {why.titleLines.map((line, i) => (
             <>
               {i > 0 && <br />}
@@ -65,37 +53,29 @@ const { tone, rhythm } = Astro.props
           ))}
         </h2>
 
-        <span aria-hidden="true" class="mt-5 block h-[3px] w-16 bg-accent-orange"></span>
+        <span aria-hidden="true" class="mt-6 block h-[3px] w-20 rounded-full bg-brand-mint"></span>
 
-        <p class="mt-5 font-sans text-[15px] leading-relaxed text-neutral-light/75 sm:text-base">
+        <p class="mt-6 max-w-[36rem] font-sans text-[17px] leading-relaxed text-neutral-light/85 sm:text-[19px]">
           {why.text}
         </p>
 
-        <Button
-          cta="diferenciais-cta"
-          variant="primary"
-          class="mt-7 w-full shadow-[0_14px_30px_-12px_rgba(2,118,83,0.6)] sm:w-auto"
+        <button
+          type="button"
+          data-cta="diferenciais-cta"
+          class="btn-slave-whats group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-sm bg-accent-orange px-7 py-4 font-sans text-[16px] font-bold text-neutral-light shadow-[0_16px_32px_-16px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:bg-accent-orange-dark sm:w-auto"
         >
-          {cta.primary}
-        </Button>
+          {why.cta}
+          <Icon
+            name="arrow-right"
+            class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+          />
+        </button>
       </div>
-    </div>
-
-    <div class="why-people" aria-hidden="true">
-      <Image
-        src={why.person.src}
-        alt={why.person.alt}
-        format="webp"
-        width={1220}
-        loading="lazy"
-        decoding="async"
-        class="why-person"
-      />
     </div>
   </div>
 
-  {/* Cards sobrepostos à base do bloco navy */}
-  <div class="relative z-10 mx-auto -mt-16 max-w-page px-6 lg:px-10">
+  {/* Cards sobrepostos à base do bloco */}
+  <div class="relative z-10 mx-auto -mt-20 max-w-page px-6 lg:px-10">
     <ul
       class="why-track scroll-track -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0"
       aria-label={why.eyebrow}
@@ -146,55 +126,39 @@ const { tone, rhythm } = Astro.props
   .why-hero {
     isolation: isolate;
   }
-  .why-people {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 620px);
-    height: 500px;
-    margin: 0 auto;
-    pointer-events: none;
-  }
-  .why-person {
-    position: absolute;
-    z-index: 2;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: bottom center;
-    filter: drop-shadow(0 12px 20px rgb(0 15 35 / 25%));
-  }
-  @media (min-width: 1024px) {
-    .why-hero {
-      display: flex;
-      align-items: center;
-      min-height: 520px;
-    }
-    .why-people {
-      position: absolute;
-      right: 2%;
-      bottom: 0;
-      width: 49%;
-      height: 100%;
-      max-height: 560px;
-    }
-  }
-  @media (max-width: 389px) {
-    .why-people {
-      height: 450px;
-    }
+
+  /* Mobile: a multifuncional aparece embaixo, sob um verde que segura o texto em cima. */
+  .why-hero :global(.why-scene) {
+    object-position: 80% 100%;
   }
 
-  .why-grid {
-    background-image:
-      linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(ellipse at 15% 10%, black 0%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at 15% 10%, black 0%, transparent 70%);
+  .why-veil {
+    background: linear-gradient(
+      180deg,
+      rgb(5 61 49 / 0.96) 0%,
+      rgb(5 61 49 / 0.88) 50%,
+      rgb(5 61 49 / 0.35) 100%
+    );
+  }
+
+  @media (min-width: 1024px) {
+    .why-hero {
+      min-height: 620px;
+    }
+
+    /* Desktop: a foto já traz o degradê verde à esquerda; o véu só reforça o texto. */
+    .why-hero :global(.why-scene) {
+      object-position: 50% 30%;
+    }
+
+    .why-veil {
+      background: linear-gradient(
+        90deg,
+        rgb(5 61 49 / 0.75) 0%,
+        rgb(5 61 49 / 0.45) 32%,
+        transparent 58%
+      );
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

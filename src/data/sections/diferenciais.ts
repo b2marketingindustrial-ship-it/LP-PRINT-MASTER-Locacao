@@ -1,15 +1,15 @@
 /**
  * Dados da seção "Diferenciais" (biblioteca B2, fase: autoridade).
  *
- * Bloco navy em largura total com a frase de autoridade e a pessoa recortada, e 5
- * cards sobrepostos à base do bloco. São 5 exatos: o grid é `lg:grid-cols-5`.
+ * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
+ * bloco em largura total sobre a foto do escritório com a multifuncional Ricoh (o
+ * degradê verde já vem na imagem), sem a pessoa recortada, e 5 cards sobrepostos à
+ * base. São 5 exatos: o grid é `lg:grid-cols-5`.
  */
 import type { IconName } from '@data/icons'
 import type { Photo } from '@data/types'
-import { site } from '@data/site'
 
 import cenario from '@assets/diferenciais/cenario.jpg'
-import pessoa from '@assets/diferenciais/pessoa.png'
 
 export interface Reason {
   icon: IconName
@@ -18,17 +18,15 @@ export interface Reason {
 }
 
 export const why = {
-  eyebrow: `Por que a ${site.brandShort}`,
+  eyebrow: 'Soluções Print Master',
   /** Cada item é uma linha do H2 (quebra forçada). 3–6 palavras no total. */
-  titleLines: ['Sua empresa mais', 'produtiva e econômica.'],
-  text: `Desde 2003, a ${site.brandShort} é referência em soluções de impressão, cópias e digitalização de documentos para empresas de todos os portes.`,
+  titleLines: ['Impressão inteligente', 'para sua empresa.'],
+  text: 'Tecnologia, suporte e gestão para imprimir melhor, reduzir custos e simplificar a rotina da sua empresa.',
+  /** Rótulo do botão da seção. */
+  cta: 'Solicite uma proposta',
   scene: {
     src: cenario,
-    alt: 'Profissional digitando em mesa de escritório',
-  },
-  person: {
-    src: pessoa,
-    alt: 'Impressoras multifuncionais, copiadoras, plotter e scanners',
+    alt: 'Multifuncional Ricoh em escritório iluminado com plantas e estações de trabalho',
   },
   reasons: [
     {
@@ -61,7 +59,7 @@ export const why = {
   eyebrow: string
   titleLines: readonly string[]
   text: string
+  cta: string
   scene: Photo
-  person: Photo
   reasons: readonly [Reason, Reason, Reason, Reason, Reason]
 }
