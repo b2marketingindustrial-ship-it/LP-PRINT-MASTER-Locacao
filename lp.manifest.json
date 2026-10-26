@@ -150,7 +150,8 @@
       ],
       "exampleHash": "61d1254bd3fc3c58",
       "ctas": [
-        "aplicacoes-{item.id}"
+        "aplicacoes-{item.id}",
+        "aplicacoes-cta"
       ],
       "contract": {
         "itemsPath": "items",
@@ -176,7 +177,8 @@
           "height": 900,
           "alpha": false
         }
-      ]
+      ],
+      "localVariant": "Print Master 26/10/2026 — mockup: cabeçalho à esquerda com link, fotos 6:5 numeradas e painel verde-escuro (docs/BRIEFING.md)"
     },
     {
       "slug": "diferenciais",

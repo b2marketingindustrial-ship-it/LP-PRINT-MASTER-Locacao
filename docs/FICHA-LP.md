@@ -214,26 +214,28 @@ blocos:
     veredicto: completo
     responde: [locacao-aluguel]
     papeis: [Administrativo, Diretoria]
-    eyebrow: Ideal para
+    # variante local do mockup aprovado em 26/10/2026; fotos recortadas do próprio mockup
+    eyebrow: Soluções por segmento
     title: Impressão para a rotina de cada negócio
     text: Soluções de impressão, cópia e digitalização para empresas de todos os portes e segmentos.
+    cta: Encontre a solução ideal
     items:
       - id: contabilidades
         label: Contabilidades
         description: Impressão e digitalização para a rotina de escritórios de contabilidade.
-        photo: Papéis, calculadora e notebook sobre mesa de escritório
+        photo: Mesa de contabilidade com notebook, calculadora e multifuncional ao fundo
       - id: coworkings
         label: Coworkings
         description: Equipamentos compartilhados para quem trabalha em espaços de coworking.
-        photo: Sala de trabalho equipada com computadores
+        photo: Coworking com pessoas trabalhando e multifuncional ao fundo
       - id: escolas
         label: Escolas e faculdades
         description: Impressão e cópias para escolas, faculdades e cursinhos.
-        photo: Estudante sorrindo sentada à mesa com cadernos
+        photo: Estudante escrevendo em biblioteca com multifuncional ao lado
       - id: advocacia
         label: Escritórios de advocacia
         description: Impressão e digitalização de documentos para escritórios de advocacia.
-        photo: Estátua da deusa da justiça com balança
+        photo: Mesa de escritório de advocacia com livros, balança da justiça e multifuncional
 
   segmentos:
     veredicto: insuficiente

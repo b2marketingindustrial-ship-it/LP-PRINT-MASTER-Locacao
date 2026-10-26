@@ -2,13 +2,14 @@
 /**
  * Galeria de aplicações — fase "prova" da biblioteca B2.
  *
- * Cabeçalho centrado e 4 cards-botão com foto 4:3. O card inteiro é o CTA, por
- * isso o `<button>` envolve a foto e o texto.
+ * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
+ * cabeçalho à esquerda com link à direita e 4 cards-botão — foto 6:5 com o número
+ * no canto e painel verde-escuro com título, texto e seta. O card inteiro é o CTA,
+ * por isso o `<button>` envolve a foto e o texto.
  */
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
-import SectionHeader from '@components/SectionHeader.astro'
 import type { SectionProps } from '@lib/layout'
 import { applications } from '@data/sections/aplicacoes'
 
@@ -18,66 +19,86 @@ const { tone, rhythm } = Astro.props
 ---
 
 <Section id="aplicacoes" tone={tone} rhythm={rhythm}>
-  <SectionHeader
-    eyebrow={applications.eyebrow}
-    title={applications.title}
-    text={applications.text}
-    align="center"
-    width="4xl"
-  />
+  <div class="pt-6 lg:pt-10">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+      <div class="max-w-4xl">
+        <span class="inline-flex items-center gap-3 font-sans text-[12.5px] font-bold tracking-[0.22em] text-ink-soft uppercase">
+          <span aria-hidden="true" class="size-3 rounded-[3px] bg-brand-mint"></span>
+          {applications.eyebrow}
+        </span>
+        <h2 class="mt-4 max-w-[40rem] font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-primary-dark sm:text-5xl lg:text-[3.35rem]">
+          {applications.title}
+        </h2>
+        <p class="mt-4 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
+          {applications.text}
+        </p>
+      </div>
 
-  <ul class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-    {applications.items.map((app, i) => (
-      <li>
-        <button
-          type="button"
-          data-cta={`aplicacoes-${app.id}`}
-          class="btn-slave-whats app-card group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-neutral-gray-200/70 bg-neutral-light text-left shadow-[0_1px_2px_rgba(13,29,48,0.05)] transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:border-accent-orange/50 hover:shadow-[0_28px_56px_-28px_rgba(0,33,71,0.35)]"
-        >
-          <span
-            aria-hidden="true"
-            class="absolute inset-x-0 top-0 z-10 h-[3px] origin-left scale-x-0 bg-accent-orange transition-transform duration-300 ease-out group-hover:scale-x-100"
-          />
+      <button
+        type="button"
+        data-cta="aplicacoes-cta"
+        class="btn-slave-whats group inline-flex w-fit shrink-0 items-center gap-3 border-b-2 border-brand-mint pb-1.5 font-sans text-[16px] font-semibold text-primary-dark transition-colors duration-200 hover:text-accent-orange lg:mt-6"
+      >
+        {applications.cta}
+        <Icon
+          name="arrow-right"
+          class="size-5 transition-transform duration-200 group-hover:translate-x-1"
+        />
+      </button>
+    </div>
 
-          <div class="relative aspect-[4/3] overflow-hidden bg-neutral-gray-100">
-            <Image
-              src={app.photo.src}
-              alt={app.photo.alt}
-              format="webp"
-              width={640}
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-            />
-            <span
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-primary-dark-900/55 to-transparent"
-            />
-            <span class="absolute bottom-3 left-4 z-[2] font-display text-[11px] font-extrabold tracking-[0.2em] text-neutral-light/85">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-          </div>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {applications.items.map((app, i) => (
+        <li>
+          <button
+            type="button"
+            data-cta={`aplicacoes-${app.id}`}
+            class="btn-slave-whats app-card group relative flex h-full w-full flex-col overflow-hidden rounded-[20px] text-left ring-1 ring-primary-dark/10 shadow-[0_26px_50px_-30px_rgba(6,67,55,0.6)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_34px_64px_-30px_rgba(6,67,55,0.7)]"
+          >
+            <div class="relative aspect-[6/5] overflow-hidden bg-neutral-gray-100">
+              <Image
+                src={app.photo.src}
+                alt={app.photo.alt}
+                format="webp"
+                width={640}
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+              />
+              <span class="absolute top-3 left-3 z-[2] flex size-11 items-center justify-center rounded-lg bg-primary-dark font-display text-[15px] font-extrabold text-neutral-light shadow-[0_8px_18px_-8px_rgba(0,0,0,0.5)]">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </div>
 
-          <div class="flex flex-1 items-start justify-between gap-3 px-5 pt-4 pb-5">
-            <span class="flex min-w-0 flex-col gap-1.5">
-              <span class="font-display text-lg leading-snug font-extrabold text-ink">
+            <div class="app-panel flex flex-1 flex-col px-6 pt-5 pb-6">
+              <span class="font-display text-[1.3rem] leading-snug font-extrabold text-neutral-light">
                 {app.label}
               </span>
-              <span class="font-sans text-[13px] leading-relaxed text-ink-soft">
-                {app.description}
+              <span class="mt-2 flex items-center justify-between gap-3">
+                <span class="font-sans text-[14.5px] leading-relaxed text-neutral-light/85">
+                  {app.description}
+                </span>
+                <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-mint-soft text-primary-dark transition-[background-color,transform] duration-300 group-hover:translate-x-0.5 group-hover:bg-brand-mint">
+                  <Icon name="arrow-right" class="size-5" />
+                </span>
               </span>
-            </span>
-            <span class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-neutral-gray-100 text-primary-dark transition-[background-color,color,transform] duration-300 group-hover:translate-x-0.5 group-hover:bg-accent-orange group-hover:text-neutral-light">
-              <Icon name="arrow-right" class="size-3.5" />
-            </span>
-          </div>
-        </button>
-      </li>
-    ))}
-  </ul>
+            </div>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
 </Section>
 
 <style>
+  .app-panel {
+    background-image: linear-gradient(
+      170deg,
+      var(--color-primary-dark-800) 0%,
+      var(--color-primary-dark) 100%
+    );
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .app-card,
     .app-card * {
