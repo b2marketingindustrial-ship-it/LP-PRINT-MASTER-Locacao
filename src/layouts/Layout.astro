@@ -2,6 +2,7 @@
 import { getImage } from 'astro:assets'
 import logoImg from '../assets/LOGO.png'
 import '../styles/global.css'
+import manropeLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url'
 import {
   site,
   title as defaultTitle,
@@ -70,12 +71,7 @@ const jsonLd = {
       imagesizes="(min-width: 1024px) 1600px, 100vw"
       fetchpriority="high"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="font" type="font/woff2" href={manropeLatin} crossorigin />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   </head>
