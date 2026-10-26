@@ -116,7 +116,6 @@
         "itemsMax": 6,
         "requiredItemFields": [
           "id",
-          "icon",
           "title",
           "description"
         ],
@@ -126,7 +125,8 @@
           "item.description": 90
         }
       },
-      "assets": []
+      "assets": [],
+      "localVariant": "Print Master 26/10/2026 — mockup: cabeçalho claro e 4 cards verde-escuros numerados, sem ícones (docs/BRIEFING.md)"
     },
     {
       "slug": "aplicacoes",

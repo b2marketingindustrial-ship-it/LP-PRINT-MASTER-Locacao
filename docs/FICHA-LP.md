@@ -190,25 +190,23 @@ blocos:
     veredicto: completo
     responde: [locacao-aluguel]
     papeis: [Administrativo, Compras]
+    # variante local do mockup aprovado em 26/10/2026: cards numerados, sem ícones
     eyebrow: Como funciona
-    title: Da escolha ao equipamento funcionando
+    title: Da escolha à impressão, cuidamos de cada etapa.
     microcopy: Manutenção e suporte inclusos
-    text: Um atendimento completo para indicar o equipamento ideal e manter a impressão da sua empresa funcionando.
+    text: Soluções sob medida para simplificar a rotina da sua empresa.
+    cta: Fale com um especialista
     steps:
       - id: diagnostico
-        icon: search
         title: Diagnóstico
-        description: Entendemos o volume de impressão, cópias e digitalização da empresa.
+        description: Entendemos o volume e as necessidades de impressão da sua empresa.
       - id: proposta
-        icon: file
         title: Proposta sob medida
-        description: Indicamos os equipamentos ideais e montamos a proposta de locação.
+        description: Selecionamos os equipamentos e montamos sua proposta de locação.
       - id: instalacao
-        icon: gear
         title: Instalação
-        description: Entregamos e configuramos os equipamentos na rede da sua empresa.
+        description: Entregamos e configuramos tudo na rede da sua empresa.
       - id: suporte
-        icon: wrench
         title: Suporte e manutenção
         description: Assistência técnica remota ou presencial, com manutenção inclusa.
 

@@ -1,17 +1,13 @@
 /**
  * Dados da seção "Como funciona" (biblioteca B2, fase: apoio).
  *
- * Alternativa ao painel de identificação para quando o atrito do visitante não é
- * "não sei o que pedir" e sim "não sei como isso acontece" — típico de serviço,
- * instalação, adequação a norma e contrato de manutenção.
- *
- * 4 a 6 etapas. Com 3 a promessa parece rasa; com 7 ninguém lê.
+ * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
+ * cabeçalho claro com botão à direita e 4 cards verde-escuros numerados, sem ícones.
+ * O contrato repinado (sem `icon`) está em `lp.manifest.json`.
  */
-import type { IconName } from '@data/icons'
 
 export interface ProcessStep {
   id: string
-  icon: IconName
   title: string
   description: string
   /** Prazo ou marco da etapa, 2–4 palavras. Opcional. */
@@ -26,37 +22,36 @@ export interface Process {
   eyebrow: string
   title: string
   text: string
+  /** Rótulo do botão da seção. */
+  cta: string
   microcopy: string
   steps: readonly ProcessStep[]
 }
 
 export const process: Process = {
   eyebrow: 'Como funciona',
-  title: 'Da escolha ao equipamento funcionando',
-  text: 'Um atendimento completo para indicar o equipamento ideal e manter a impressão da sua empresa funcionando.',
+  title: 'Da escolha à impressão, cuidamos de cada etapa.',
+  text: 'Soluções sob medida para simplificar a rotina da sua empresa.',
+  cta: 'Fale com um especialista',
   microcopy: 'Manutenção e suporte inclusos',
   steps: [
     {
       id: 'diagnostico',
-      icon: 'search',
       title: 'Diagnóstico',
-      description: 'Entendemos o volume de impressão, cópias e digitalização da empresa.',
+      description: 'Entendemos o volume e as necessidades de impressão da sua empresa.',
     },
     {
       id: 'proposta',
-      icon: 'file',
       title: 'Proposta sob medida',
-      description: 'Indicamos os equipamentos ideais e montamos a proposta de locação.',
+      description: 'Selecionamos os equipamentos e montamos sua proposta de locação.',
     },
     {
       id: 'instalacao',
-      icon: 'gear',
       title: 'Instalação',
-      description: 'Entregamos e configuramos os equipamentos na rede da sua empresa.',
+      description: 'Entregamos e configuramos tudo na rede da sua empresa.',
     },
     {
       id: 'suporte',
-      icon: 'wrench',
       title: 'Suporte e manutenção',
       description: 'Assistência técnica remota ou presencial, com manutenção inclusa.',
     },
