@@ -30,16 +30,17 @@ Documentos do padrão: `../PROMPT-PADRAO-LP.md` (prompt de entrevista + regras, 
 
 ## Scripts
 
-| Comando                         | Faz                                                                                                                                                                                                                                         |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`                   | servidor local; abra `http://localhost:4321/?grid=1` para ver as colunas do hero sobre o banner                                                                                                                                             |
-| `npm run check:lp`              | verifica as regras do padrão (CTAs, `data-cta`, reduced-motion, h1, ids, imagens, quantidades do conteúdo, estrutura fixa)                                                                                                                  |
-| `npm run check`                 | `astro check` (tipos; acusa contagem errada em `content.ts`)                                                                                                                                                                                |
-| `npm run lint` / `format:check` | ESLint e Prettier                                                                                                                                                                                                                           |
-| `npm run build`                 | gera `dist/`                                                                                                                                                                                                                                |
-| `npm run verify`                | `check:lp` + lint + prettier + build, na ordem do CI                                                                                                                                                                                        |
-| `npm run screens`               | screenshots 360/768/1440/1920 (+ `?grid=1`) em `docs/screens/`. Requer `npx playwright install chromium` uma vez                                                                                                                            |
-| `npm run lh`                    | Lighthouse CI sobre `dist/` com os limites de `lighthouserc.json`. Roda no GitHub Actions a cada push; **no Windows local o `chrome-launcher` falha ao limpar a pasta temporária e não grava o relatório** (bug conhecido). Use o CI ou WSL |
+| Comando                         | Faz                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`                   | servidor local; abra `http://localhost:4321/?grid=1` para ver as colunas do hero sobre o banner                                                                                                                                                                                                                       |
+| `npm run check:lp`              | verifica as regras do padrão (CTAs, `data-cta`, reduced-motion, h1, ids, imagens, quantidades do conteúdo, estrutura fixa)                                                                                                                                                                                            |
+| `npm run check`                 | `astro check` (tipos; acusa contagem errada em `content.ts`)                                                                                                                                                                                                                                                          |
+| `npm run lint` / `format:check` | ESLint e Prettier                                                                                                                                                                                                                                                                                                     |
+| `npm run build`                 | gera `dist/`                                                                                                                                                                                                                                                                                                          |
+| `npm run verify`                | `check:lp` + lint + prettier + build, na ordem do CI                                                                                                                                                                                                                                                                  |
+| `npm run screens`               | screenshots 360/768/1440/1920 (+ `?grid=1`) em `docs/screens/`. Requer `npx playwright install chromium` uma vez                                                                                                                                                                                                      |
+| `npm run lh`                    | Lighthouse CI sobre `dist/` com os limites de `lighthouserc.json`. Não roda no `publish:wp` (o Chromium não abre no servidor de desenvolvimento da B2); rode à parte onde ele funcionar. **No Windows local o `chrome-launcher` falha ao limpar a pasta temporária e não grava o relatório** (bug conhecido); use WSL |
+| `npm run publish:wp`            | verifica (`check:lp`, lint, prettier), gera `dist/` e publica na branch `wp-build`. Exige árvore limpa e `main` igual a `origin/main`                                                                                                                                                                                 |
 
 ## Rastreamento de CTAs
 
@@ -51,7 +52,7 @@ O banner é feito para o grid, não o contrário. Arquivo `src/assets/heroBg.png
 
 ## Publicação
 
-Push em `main` → GitHub Actions roda `check:lp`, lint, prettier e build → `dist/` é publicado na branch órfã `wp-build` → o plugin B2 LP Publisher lê de lá. Sem `basePath`; `site.url` deve ser a URL final absoluta.
+Sem GitHub Actions: com `main` commitada e no GitHub, `npm run publish:wp` roda `check:lp`, lint, prettier e build e publica `dist/` na branch órfã `wp-build` (force-push) → o plugin B2 LP Publisher lê de lá. Sem `basePath`; `site.url` deve ser a URL final absoluta.
 
 ## O que não fazer
 
