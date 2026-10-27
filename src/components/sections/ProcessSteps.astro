@@ -32,14 +32,14 @@ const titleBefore = at >= 0 ? process.title.slice(0, at) : process.title
         class="pointer-events-none absolute -top-32 -left-24 size-[420px] rounded-full bg-brand-mint/15 blur-3xl"
       ></span>
 
-      <div class="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div class="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <div>
           <Eyebrow tone="light">{process.eyebrow}</Eyebrow>
           <h2 class="mt-4 font-display text-[2.1rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3rem]">
             {titleBefore}
             {at >= 0 && <span class="text-brand-mint">{process.highlight}</span>}
           </h2>
-          <p class="mt-4 font-sans text-[17px] leading-relaxed text-neutral-light/80 sm:text-lg">
+          <p class="mt-4 font-sans text-[17px] leading-relaxed text-neutral-light/80 sm:text-lg lg:text-[17px] xl:whitespace-nowrap">
             {process.text}
           </p>
         </div>

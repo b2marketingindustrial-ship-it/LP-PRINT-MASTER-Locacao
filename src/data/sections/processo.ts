@@ -38,9 +38,9 @@ export const process: Process = {
   eyebrow: 'Como funciona',
   title: 'Da escolha à impressão, cuidamos de cada etapa.',
   highlight: 'cuidamos de cada etapa.',
-  text: 'Um processo simples, do primeiro contato ao suporte contínuo.',
+  text: 'Outsourcing de impressão com atendimento em SLA e custo por página.',
   cta: cta.card,
-  microcopy: 'Manutenção e suporte inclusos',
+  microcopy: 'Toner, manutenção e suporte inclusos',
   steps: [
     {
       id: 'diagnostico',
@@ -64,7 +64,7 @@ export const process: Process = {
       id: 'suporte',
       icon: 'wrench',
       title: 'Suporte e manutenção',
-      description: 'Assistência técnica remota ou presencial, com manutenção inclusa.',
+      description: 'Suporte remoto ou presencial e troca rápida em caso de falha.',
     },
   ],
 }

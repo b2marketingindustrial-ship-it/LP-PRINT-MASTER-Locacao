@@ -44,12 +44,12 @@ export const why = {
     {
       icon: 'map-pin',
       title: 'Atendimento local',
-      description: 'Equipe em Goiânia para atender empresas de GO e DF.',
+      description: 'Sede em Goiânia e atendimento técnico em todo GO e DF.',
     },
     {
       icon: 'sliders',
-      title: 'Gestão de documentos',
-      description: 'Contabilização e gerenciamento eletrônico do que se imprime.',
+      title: 'Custo por página',
+      description: 'Contabilização do que se imprime, com custo previsível.',
     },
     {
       icon: 'shield',

@@ -22,7 +22,7 @@ campanha:
   mainKeyword: locação de impressoras
   negatives: []
   forbidden: []
-  areaAtendida: GO e DF (sede em Goiânia; DF definido pelo usuário em 27/10/2026)
+  areaAtendida: Goiás e Distrito Federal, sem limitar às capitais (sede em Goiânia; definido pelo usuário em 27/10/2026)
   onde: selo
   familias:
     - nome: locacao-aluguel
@@ -101,18 +101,18 @@ tokens:
 
 conteudo:
   title: null
-  description: 'Locação de impressoras para empresas em Goiânia e no DF: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
+  description: 'Locação de impressoras para empresas em Goiás e no DF: multifuncionais laser Ricoh, copiadoras e scanners com toner e manutenção inclusos.'
   hero:
-    eyebrow: Impressão corporativa
+    eyebrow: Outsourcing de impressão
     title: Locação de impressoras para empresas
-    text: Variedade de multifuncionais, copiadoras e scanners, mono ou coloridos, com manutenção inclusa e sem investimento inicial.
+    text: Variedade de multifuncionais A4 e A3, copiadoras e scanners, com toner e manutenção inclusos e sem investimento inicial.
     points:
       - icon: shield
         line1: Desde 2003
         line2: no mercado
       - icon: wrench
-        line1: Manutenção
-        line2: inclusa
+        line1: Toner e manutenção
+        line2: inclusos
       - icon: users
         line1: Suporte
         line2: especializado
@@ -126,11 +126,12 @@ conteudo:
     text: Locação de impressoras com tecnologia, manutenção e suporte|para simplificar a rotina da sua empresa.
     trust:
       - icon: wrench
-        label: Manutenção inclusa
+        label: Toner e manutenção inclusos
       - icon: users
         label: Suporte remoto e presencial
       - icon: pin
-        label: Atendimento em GO/DF
+        label: Atendimento em GO e DF
+    cnpjNote: Locação exclusiva para empresas com CNPJ.
     lgpd: Seus dados serão usados apenas para responder à sua solicitação.
 
 blocos:
@@ -153,18 +154,18 @@ blocos:
         tag: Multifuncionais
         title: Multifuncionais Ricoh
         description: Imprima, copie e digitalize com praticidade.
-        features: [Modelos mono e coloridos, Tecnologia laser]
+        features: [Formatos A4 e A3, Mono e coloridas]
         photo: Impressora multifuncional laser Ricoh M 320F
       - id: copiadoras
         tag: Alta produtividade
         title: Copiadoras
         description: Mais agilidade para grandes volumes de cópias.
-        features: [Grandes volumes, Cópia e impressão]
+        features: [Formatos A4 e A3, Grandes volumes]
         photo: Copiadora multifuncional Ricoh MP 4055
       - id: scanners
         tag: Digitalização
         title: Scanners inteligentes
-        description: Organize e digitalize documentos em rede.
+        description: 'Do A4 ao A0: documentos, plantas e projetos.'
         features: [Digitalização em rede, Arquivo digital]
         photo: Scanner de documentos fi-7600
       - id: conectados
@@ -197,8 +198,8 @@ blocos:
     # variante local de 27/10/2026: painel verde-escuro, linha do tempo e ícones por etapa
     eyebrow: Como funciona
     title: Da escolha à impressão, cuidamos de cada etapa.
-    microcopy: Manutenção e suporte inclusos
-    text: Um processo simples, do primeiro contato ao suporte contínuo.
+    microcopy: Toner, manutenção e suporte inclusos
+    text: Outsourcing de impressão com atendimento em SLA e custo por página.
     cta: Fale com um especialista
     steps:
       - id: diagnostico
@@ -212,7 +213,7 @@ blocos:
         description: Entregamos e configuramos tudo na rede da sua empresa.
       - id: suporte
         title: Suporte e manutenção
-        description: Assistência técnica remota ou presencial, com manutenção inclusa.
+        description: Suporte remoto ou presencial e troca rápida em caso de falha.
 
   aplicacoes:
     veredicto: completo
@@ -267,10 +268,10 @@ blocos:
         description: Experiência em dois segmentos, com solução para cada rotina.
       - icon: map-pin
         title: Atendimento local
-        description: Equipe em Goiânia para atender empresas de GO e DF.
+        description: Sede em Goiânia e atendimento técnico em todo GO e DF.
       - icon: sliders
-        title: Gestão de documentos
-        description: Contabilização e gerenciamento eletrônico do que se imprime.
+        title: Custo por página
+        description: Contabilização do que se imprime, com custo previsível.
       - icon: shield
         title: Sem investimento inicial
         description: Use equipamentos sem comprar ou imobilizar capital.

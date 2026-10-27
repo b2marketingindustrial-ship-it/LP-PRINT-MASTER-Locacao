@@ -48,18 +48,18 @@ export const header = {
 /* -------------------------------------------------------------------- hero */
 
 export const hero = {
-  eyebrow: 'Impressão corporativa',
+  eyebrow: 'Outsourcing de impressão',
   title: `${site.product} para ${site.context}`,
   /** Trecho do H1 em menta, na mesma linha (precisa estar contido em `title`). */
   highlight: 'impressoras',
-  text: 'Variedade de multifuncionais, copiadoras e scanners, mono ou coloridos, com manutenção inclusa e sem investimento inicial.',
+  text: 'Variedade de multifuncionais A4 e A3, copiadoras e scanners, com toner e manutenção inclusos e sem investimento inicial.',
   banner: {
     src: heroBg,
     alt: 'Multifuncionais Ricoh e Canon e impressora Epson em escritório claro',
   },
   points: [
     { icon: 'shield', line1: 'Desde 2003', line2: 'no mercado' },
-    { icon: 'wrench', line1: 'Manutenção', line2: 'inclusa' },
+    { icon: 'wrench', line1: 'Toner e manutenção', line2: 'inclusos' },
     { icon: 'users', line1: 'Suporte', line2: 'especializado' },
     { icon: 'map-pin', line1: 'Atendimento', line2: 'em GO e DF' },
   ],
@@ -81,13 +81,13 @@ export const quote = {
   highlight: 'sua empresa.',
   /** `|` marca a quebra de linha no desktop. */
   text: 'Locação de impressoras com tecnologia, manutenção e suporte|para simplificar a rotina da sua empresa.',
-  /** Chamada acima do espaço reservado ao WhatsApp. */
-  whatsappLead: 'Prefere falar com a nossa equipe?',
   trust: [
-    { icon: 'wrench', label: 'Manutenção inclusa' },
+    { icon: 'wrench', label: 'Toner e manutenção inclusos' },
     { icon: 'users', label: 'Suporte remoto e presencial' },
-    { icon: 'pin', label: 'Atendimento em GO/DF' },
+    { icon: 'pin', label: 'Atendimento em GO e DF' },
   ],
+  /** Nota abaixo do botão de WhatsApp: a locação é só para pessoa jurídica (como nos anúncios). */
+  cnpjNote: 'Locação exclusiva para empresas com CNPJ.',
   /** Nota de LGPD exibida abaixo do formulário. */
   lgpd: 'Seus dados serão usados apenas para responder à sua solicitação.',
 } as const satisfies {
@@ -95,7 +95,7 @@ export const quote = {
   title: string
   highlight: string
   text: string
-  whatsappLead: string
+  cnpjNote: string
   trust: readonly [TrustItem, TrustItem, TrustItem]
   lgpd: string
 }
