@@ -25,7 +25,7 @@
   --color-ink: #10201b;
   --color-ink-soft: #4a5c56;
 
-  --container-page: 1320px;
+  --container-page: 1450px;
 
   /* Uma única família para títulos e corpo; o peso e o tracking fazem a hierarquia.
      Reserva com métricas de Arial: uma reserva larga (DejaVu, no Linux) quebrava o H1 em
@@ -40,6 +40,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Âncoras (ex.: "Conheça os equipamentos" → #linhas) param abaixo do header fixo. */
+    scroll-padding-top: 88px;
   }
 
   body {
@@ -138,5 +140,87 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/*
+ * Texturas das seções claras (padrão Print Master): pontos, malha técnica, grafo de nós e
+ * anéis, em verde da marca com opacidade baixa. A seção ganha `tex` mais uma ou duas das
+ * variantes; as camadas ficam atrás do conteúdo (z-index -1 dentro de `isolate`).
+ */
+.tex {
+  position: relative;
+  isolation: isolate;
+}
+
+.tex::before,
+.tex::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Pontos, esmaecidos para o canto oposto. */
+.tex-dots::before {
+  background-image: radial-gradient(circle, rgb(2 118 83 / 0.22) 1.3px, transparent 1.7px);
+  background-size: 26px 26px;
+  mask-image:
+    radial-gradient(ellipse 70% 90% at 100% 0%, black 0%, transparent 75%),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 78%, transparent 100%);
+  -webkit-mask-image:
+    radial-gradient(ellipse 70% 90% at 100% 0%, black 0%, transparent 75%),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 78%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
+/* Malha técnica, esmaecida para a direita. */
+.tex-grid::before {
+  background-image:
+    linear-gradient(rgb(6 67 55 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(6 67 55 / 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image:
+    radial-gradient(ellipse 80% 100% at 0% 100%, black 0%, transparent 80%),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 78%, transparent 100%);
+  -webkit-mask-image:
+    radial-gradient(ellipse 80% 100% at 0% 100%, black 0%, transparent 80%),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 78%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
+/* Grafo e anéis também se dissolvem no topo e na base, para não terminarem num corte reto. */
+.tex-graph::after,
+.tex-rings::after {
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 16%,
+    #000 78%,
+    transparent 100%
+  );
+}
+
+/* Grafo de nós conectados, no canto superior direito. */
+.tex-graph::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 420' fill='none'%3E%3Cg stroke='%23027653' stroke-opacity='.28' stroke-width='1.2'%3E%3Cpath d='M40 60 L170 120 L300 50 L430 140 L560 70'/%3E%3Cpath d='M170 120 L210 250 L360 230 L430 140'/%3E%3Cpath d='M210 250 L120 340 M360 230 L470 330 L580 250 L560 70'/%3E%3Cpath d='M300 50 L360 230'/%3E%3C/g%3E%3Cg fill='%2361e5a9' stroke='%23027653' stroke-opacity='.45' stroke-width='1.4'%3E%3Ccircle cx='40' cy='60' r='5'/%3E%3Ccircle cx='170' cy='120' r='8'/%3E%3Ccircle cx='300' cy='50' r='5'/%3E%3Ccircle cx='430' cy='140' r='9'/%3E%3Ccircle cx='560' cy='70' r='5'/%3E%3Ccircle cx='210' cy='250' r='6'/%3E%3Ccircle cx='360' cy='230' r='8'/%3E%3Ccircle cx='120' cy='340' r='4'/%3E%3Ccircle cx='470' cy='330' r='6'/%3E%3Ccircle cx='580' cy='250' r='5'/%3E%3C/g%3E%3C/svg%3E")
+    no-repeat right -40px top 0 / min(640px, 70%) auto;
+  opacity: 0.9;
+}
+
+/* Anéis concêntricos (eco das curvas do hero), no canto inferior esquerdo. */
+.tex-rings::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560' fill='none' stroke='%23027653' stroke-opacity='.16'%3E%3Ccircle cx='280' cy='280' r='120' stroke-width='1.5'/%3E%3Ccircle cx='280' cy='280' r='180' stroke-width='1.2'/%3E%3Ccircle cx='280' cy='280' r='240' stroke-width='1'/%3E%3Ccircle cx='280' cy='280' r='276' stroke-width='.8'/%3E%3C/svg%3E")
+    no-repeat left -200px bottom -240px / 560px 560px;
+}
+
+@media (max-width: 1023px) {
+  .tex-graph::after {
+    opacity: 0.5;
+    background-size: 420px auto;
   }
 }

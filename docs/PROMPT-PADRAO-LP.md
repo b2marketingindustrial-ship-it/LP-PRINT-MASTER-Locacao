@@ -155,7 +155,7 @@ Declare no `@theme` do CSS global (Tailwind 4):
 --color-neutral-gray-200: #a0a0a0;  /* bordas, sempre com /60–/70 */
 --color-ink: #1b2733;               /* texto principal */
 --color-ink-soft: #44546a;          /* texto secundário */
---container-page: 1320px;           /* max-w-page */
+--container-page: 1450px;           /* max-w-page */
 --font-display: 'Manrope', ui-sans-serif, system-ui, sans-serif;
 --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
 ```
@@ -283,7 +283,7 @@ Regras: sem menu, sem links de âncora, sem telefone no header. A placa branca d
 
 ### 4.1.2 Hero de três colunas
 
-Grid desktop (`lg`, container 1320px, `px-10`):
+Grid desktop (`lg`, container 1450px, `px-10`):
 
 ```
 | coluna 1: texto (1fr ≈ 622px) | gap 24 | coluna 2: VAZIA (270px) | gap 24 | coluna 3: shortcode (300px) |

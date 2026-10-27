@@ -7,6 +7,7 @@
  * `lp.manifest.json`.
  */
 import type { Photo } from '@data/types'
+import { cta } from '@data/content'
 
 import linha1 from '@assets/linhas/linha-1.png'
 import linha2 from '@assets/linhas/linha-2.png'
@@ -29,10 +30,10 @@ export const productLines = {
   /** Ajuda ao lado do cabeçalho. */
   help: {
     text: 'Precisa de ajuda para escolher?',
-    cta: 'Fale com um especialista',
+    cta: cta.card,
   },
   /** Rótulo do botão de cada card. */
-  itemCta: 'Solicitar orçamento',
+  itemCta: cta.primary,
   /** Rótulo da faixa de marcas abaixo do grid (só aparece com 4+ logos). */
   brandsLabel: 'Soluções com marcas reconhecidas',
   items: [
@@ -50,7 +51,7 @@ export const productLines = {
       title: 'Copiadoras',
       description: 'Mais agilidade para grandes volumes de cópias.',
       photo: { src: linha2, alt: 'Copiadora multifuncional Ricoh MP 4055' },
-      features: ['Alta produtividade', 'Manutenção inclusa'],
+      features: ['Grandes volumes', 'Cópia e impressão'],
     },
     {
       id: 'scanners',

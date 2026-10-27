@@ -8,6 +8,7 @@
  */
 import type { IconName } from '@data/icons'
 import type { Photo } from '@data/types'
+import { cta } from '@data/content'
 
 import cenario from '@assets/diferenciais/cenario.jpg'
 
@@ -18,36 +19,37 @@ export interface Reason {
 }
 
 export const why = {
-  eyebrow: 'Soluções Print Master',
+  eyebrow: 'Por que a Print Master',
   /** Cada item é uma linha do H2 (quebra forçada). 3–6 palavras no total. */
-  titleLines: ['Impressão inteligente', 'para sua empresa.'],
-  text: 'Tecnologia, suporte e gestão para imprimir melhor, reduzir custos e simplificar a rotina da sua empresa.',
+  titleLines: ['Duas décadas de', 'soluções em impressão.'],
+  /** `|` marca a quebra de linha no desktop. */
+  text: 'A Print Master une tecnologia, suporte técnico|e gestão de documentos para empresas que precisam imprimir|com eficiência e custo previsível.',
   /** Rótulo do botão da seção. */
-  cta: 'Solicite uma proposta',
+  cta: cta.primary,
   scene: {
     src: cenario,
     alt: 'Multifuncional Ricoh em escritório iluminado com plantas e estações de trabalho',
   },
   reasons: [
     {
-      icon: 'tag',
-      title: 'Redução de custos',
-      description: 'Economia em compra, manutenção, toners e suprimentos.',
+      icon: 'badge-check',
+      title: 'Desde 2003',
+      description: 'Mais de duas décadas com impressão, cópia e digitalização.',
     },
     {
-      icon: 'wrench',
-      title: 'Assistência técnica',
-      description: 'Suporte remoto ou presencial quando precisar.',
+      icon: 'building',
+      title: 'Escritório e indústria',
+      description: 'Experiência em dois segmentos, com solução para cada rotina.',
     },
     {
-      icon: 'zap',
-      title: 'Alta performance',
-      description: 'Modelos laser e multifuncionais, mono ou coloridos.',
+      icon: 'map-pin',
+      title: 'Atendimento local',
+      description: 'Equipe em Goiânia para atender empresas de GO e DF.',
     },
     {
       icon: 'sliders',
-      title: 'Gestão inteligente',
-      description: 'Contabilização e gerenciamento eletrônico de documentos.',
+      title: 'Gestão de documentos',
+      description: 'Contabilização e gerenciamento eletrônico do que se imprime.',
     },
     {
       icon: 'shield',

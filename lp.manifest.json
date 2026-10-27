@@ -86,7 +86,7 @@
           "alpha": false
         }
       ],
-      "localVariant": "Print Master 26/10/2026 — mockup: 2 características por card, sem card escuro, ajuda no cabeçalho e faixa de marcas (docs/BRIEFING.md)"
+      "localVariant": "Print Master 27/10/2026 — 2 características por card, sem card escuro, cartão de ajuda no cabeçalho e faixa de marcas (docs/BRIEFING.md)"
     },
     {
       "slug": "processo",
@@ -126,7 +126,7 @@
         }
       },
       "assets": [],
-      "localVariant": "Print Master 26/10/2026 — mockup: cabeçalho claro e 4 cards verde-escuros numerados, sem ícones (docs/BRIEFING.md)"
+      "localVariant": "Print Master 27/10/2026 — painel verde-escuro com barra de vidro e linha do tempo de 4 etapas numeradas, com ícones (docs/BRIEFING.md)"
     },
     {
       "slug": "aplicacoes",
@@ -150,13 +150,12 @@
       ],
       "exampleHash": "61d1254bd3fc3c58",
       "ctas": [
-        "aplicacoes-{item.id}",
-        "aplicacoes-cta"
+        "aplicacoes-{item.id}"
       ],
       "contract": {
         "itemsPath": "items",
         "itemsMin": 4,
-        "itemsMax": 4,
+        "itemsMax": 8,
         "requiredItemFields": [
           "id",
           "label",
@@ -171,14 +170,14 @@
       "assets": [
         {
           "dir": "aplicacoes",
-          "files": "4 fotos",
+          "files": "4 a 8 fotos",
           "spec": "JPG/PNG 1200×900 (4:3), equipamento em operação",
           "width": 1200,
           "height": 900,
           "alpha": false
         }
       ],
-      "localVariant": "Print Master 26/10/2026 — mockup: cabeçalho à esquerda com link, fotos 6:5 numeradas e painel verde-escuro (docs/BRIEFING.md)"
+      "localVariant": "Print Master 27/10/2026 — cabeçalho centralizado sem link e carrossel de 6 cards com foto 6:5 numerada e painel verde-escuro (docs/BRIEFING.md)"
     },
     {
       "slug": "diferenciais",
@@ -227,7 +226,7 @@
           "alpha": false
         }
       ],
-      "localVariant": "Print Master 26/10/2026 — mockup: bloco sobre a foto do escritório com a multifuncional, sem a pessoa recortada (docs/BRIEFING.md)"
+      "localVariant": "Print Master 27/10/2026 — bloco \"Por que a Print Master\" sobre a foto do escritório, borda inferior reta e 5 cards sobrepostos (docs/BRIEFING.md)"
     }
   ]
 }

@@ -3,14 +3,16 @@
  * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.4). Grid 1.05fr · 1fr: formulário (shortcode) à esquerda, texto à direita.
  * Mobile: texto antes do formulário. O formulário é sempre o shortcode, nunca um <form> próprio.
  *
- * Desvio visual aprovado para a Print Master (26/10/2026, docs/BRIEFING.md): fundo verde-escuro,
- * título com o trecho final em menta e selos com divisórias. A pedido do cliente, a coluna do
- * formulário e o lugar do botão de WhatsApp ficam como espaços vazios reservados: no WordPress
- * o plugin de atendimento preenche o formulário; fora dele, o texto cru do shortcode é apagado
- * pelo script do Hero.
+ * Desvio visual aprovado para a Print Master (26–27/10/2026, docs/BRIEFING.md): fundo menta suave
+ * com textura, título com o trecho final em verde, botão "Chamar no WhatsApp" e selos com
+ * divisórias. A coluna do formulário é o espaço do shortcode: no WordPress o plugin o preenche;
+ * fora dele, o texto cru do shortcode é apagado pelo script do Hero (em `npm run dev` ele fica
+ * visível, para conferir).
  */
 import Icon from './Icon.astro'
-import { quote } from '../data/content'
+import Eyebrow from './Eyebrow.astro'
+import Button from './Button.astro'
+import { quote, cta } from '../data/content'
 
 const isDev = import.meta.env.DEV
 
@@ -20,22 +22,24 @@ const titleBefore = at >= 0 ? quote.title.slice(0, at) : quote.title
 
 <section
   id="cotacao"
-  class="quote-section relative isolate overflow-hidden rounded-t-[40px] pt-8 pb-20 lg:rounded-t-[64px]"
+  class="quote-section tex tex-grid tex-graph overflow-hidden pt-8 pb-20 max-lg:pb-16 lg:pb-22"
 >
   <span
     aria-hidden="true"
-    class="pointer-events-none absolute -top-40 -left-32 -z-10 size-[520px] rounded-full bg-brand-mint/10 blur-3xl"
+    class="pointer-events-none absolute -top-40 -left-32 -z-10 size-[520px] rounded-full bg-brand-mint/30 blur-3xl"
   ></span>
 
-  <div class="mx-auto max-w-page px-6 pt-10 lg:px-10 lg:pt-14">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+  {/* Respiro igual em cima e embaixo: 64px no mobile, 88px no desktop. No desktop o topo soma
+      mais 40px, a parte dos cards dos diferenciais que desce sobre esta seção. */}
+  <div class="mx-auto max-w-page px-6 pt-8 lg:px-10 lg:pt-24">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-stretch lg:gap-16">
       {/* Coluna do formulário: espaço reservado para o shortcode do plugin */}
       <div class="order-2 w-full lg:order-1">
-        <div class="flex min-h-[520px] flex-col" data-shortcode-slot>
+        <div class="flex h-full min-h-[520px] flex-col lg:min-h-0" data-shortcode-slot>
           <slot name="shortcode">
             {isDev ? (
               <div
-                class="flex min-h-[520px] w-full flex-col gap-3 rounded-2xl border border-neutral-gray-200/70 bg-neutral-light p-6"
+                class="flex h-full min-h-[520px] w-full flex-col gap-3 rounded-2xl lg:min-h-0 border border-neutral-gray-200/70 bg-neutral-light p-6"
                 aria-label="Mock do formulário (só em desenvolvimento)"
               >
                 <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
@@ -51,11 +55,11 @@ const titleBefore = at >= 0 ? quote.title.slice(0, at) : quote.title
                 <div class="mt-auto h-12 w-full rounded bg-accent-orange/80 sm:w-48" />
               </div>
             ) : (
-              <div class="flex min-h-[520px] w-full flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-neutral-light/30 p-8 text-center">
-                <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-brand-mint uppercase">
+              <div class="flex h-full min-h-[520px] w-full flex-col items-center justify-center lg:min-h-0 gap-3 rounded-2xl border border-dashed border-primary-dark/30 p-8 text-center">
+                <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
                   Espaço reservado
                 </span>
-                <p class="font-display text-lg font-bold text-neutral-light">
+                <p class="font-display text-lg font-bold text-primary-dark">
                   Shortcode — formulário de cotação
                 </p>
               </div>
@@ -66,36 +70,43 @@ const titleBefore = at >= 0 ? quote.title.slice(0, at) : quote.title
 
       {/* Coluna de texto */}
       <div class="order-1 lg:order-2">
-        <span class="inline-flex items-center gap-4 font-sans text-[12.5px] font-semibold tracking-[0.2em] text-neutral-light/85 uppercase">
-          <span aria-hidden="true" class="h-[3px] w-10 rounded-full bg-brand-mint"></span>
-          {quote.eyebrow}
-        </span>
+        <Eyebrow>{quote.eyebrow}</Eyebrow>
 
-        <h2 class="mt-5 font-display text-[2.4rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3.1rem] xl:text-[3.5rem]">
+        <h2 class="mt-5 font-display text-[2.4rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-primary-dark text-balance sm:text-5xl lg:text-[2.6rem] xl:text-[3.1rem]">
           {titleBefore}
-          {at >= 0 && <span class="block text-brand-mint">{quote.highlight}</span>}
+          {at >= 0 && <span class="text-accent-orange">{quote.highlight}</span>}
         </h2>
 
-        <p class="mt-6 font-sans text-[17px] leading-relaxed text-neutral-light/85 sm:text-[19px]">
-          {quote.text}
+        <p class="mt-6 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-[19px]">
+          {quote.text.split('|').map((line, i) => (
+            <Fragment>
+              {i > 0 && <br class="hidden lg:block" />}
+              {i > 0 && ' '}
+              {line}
+            </Fragment>
+          ))}
         </p>
 
-        <p class="mt-8 font-sans text-[16px] font-medium text-neutral-light/85">
-          {quote.whatsappLead}
-        </p>
-        {/* Espaço vazio no lugar do botão de WhatsApp (a pedido do cliente) */}
-        <div aria-hidden="true" class="mt-3 h-[60px] w-full max-w-[350px]"></div>
+        <p class="mt-8 font-sans text-[16px] font-medium text-ink-soft">{quote.whatsappLead}</p>
+        <Button
+          cta="cotacao-whatsapp"
+          iconName="whatsapp"
+          iconPosition="left"
+          class="mt-4 w-full sm:w-auto"
+        >
+          {cta.whatsapp}
+        </Button>
 
-        <span aria-hidden="true" class="mt-9 block h-px bg-neutral-light/15"></span>
+        <span aria-hidden="true" class="mt-9 block h-px bg-primary-dark/15"></span>
 
         <ul
           class="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-x-0"
           aria-label="Garantias"
         >
           {quote.trust.map((item) => (
-            <li class="flex items-center gap-3 sm:border-l sm:border-neutral-light/15 sm:px-4 sm:first:border-l-0 sm:first:pl-0">
-              <Icon name={item.icon} class="size-7 shrink-0 text-brand-mint" />
-              <span class="max-w-[8.5rem] font-sans text-[13.5px] leading-snug font-medium text-balance text-neutral-light/90 sm:text-[15px]">
+            <li class="flex items-center gap-3 sm:border-l sm:border-primary-dark/15 sm:px-4 sm:first:border-l-0 sm:first:pl-0">
+              <Icon name={item.icon} class="size-7 shrink-0 text-accent-orange" />
+              <span class="max-w-[8.5rem] font-sans text-[13.5px] leading-snug font-medium text-balance text-primary-dark sm:text-[15px]">
                 {item.label}
               </span>
             </li>
@@ -108,13 +119,6 @@ const titleBefore = at >= 0 ? quote.title.slice(0, at) : quote.title
 
 <style>
   .quote-section {
-    background:
-      radial-gradient(1000px 520px at 15% -10%, rgb(97 229 169 / 0.16) 0%, transparent 60%),
-      linear-gradient(
-        165deg,
-        #0b6a53 0%,
-        var(--color-primary-dark) 55%,
-        var(--color-primary-dark-900) 100%
-      );
+    background: var(--color-brand-mint-soft);
   }
 </style>

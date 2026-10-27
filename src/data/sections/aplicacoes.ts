@@ -2,8 +2,8 @@
  * Dados da seção "Aplicações" (biblioteca B2, fase: prova).
  *
  * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
- * cabeçalho à esquerda com link à direita e 4 cards-botão com foto 6:5 numerada e
- * painel verde-escuro. O card inteiro é o CTA.
+ * cabeçalho centralizado e carrossel de cards-botão (6 segmentos) com foto 6:5 numerada
+ * e painel verde-escuro. O card inteiro é o CTA.
  */
 import type { Photo } from '@data/types'
 
@@ -11,6 +11,8 @@ import app1 from '@assets/aplicacoes/aplicacao-1.jpg'
 import app2 from '@assets/aplicacoes/aplicacao-2.jpg'
 import app3 from '@assets/aplicacoes/aplicacao-3.jpg'
 import app4 from '@assets/aplicacoes/aplicacao-4.jpg'
+import app5 from '@assets/aplicacoes/aplicacao-5.jpg'
+import app6 from '@assets/aplicacoes/aplicacao-6.jpg'
 
 export interface Application {
   id: string
@@ -23,8 +25,6 @@ export const applications = {
   eyebrow: 'Soluções por segmento',
   title: 'Impressão para a rotina de cada negócio',
   text: 'Soluções de impressão, cópia e digitalização para empresas de todos os portes e segmentos.',
-  /** Link à direita do cabeçalho. */
-  cta: 'Encontre a solução ideal',
   items: [
     {
       id: 'contabilidades',
@@ -56,11 +56,22 @@ export const applications = {
         alt: 'Mesa de escritório de advocacia com livros, balança da justiça e multifuncional',
       },
     },
+    {
+      id: 'clinicas',
+      label: 'Clínicas e consultórios',
+      description: 'Impressão e digitalização de documentos para clínicas e consultórios.',
+      photo: { src: app5, alt: 'Consultório claro com mesa, cadeira e armário de documentos' },
+    },
+    {
+      id: 'administrativo',
+      label: 'Departamentos administrativos',
+      description: 'Equipamentos para a rotina de impressão e cópia dos setores administrativos.',
+      photo: { src: app6, alt: 'Pessoa digitando em mesa de escritório com pilha de documentos' },
+    },
   ],
 } as const satisfies {
   eyebrow: string
   title: string
   text: string
-  cta: string
-  items: readonly [Application, Application, Application, Application]
+  items: readonly Application[]
 }

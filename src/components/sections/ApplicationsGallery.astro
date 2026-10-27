@@ -3,12 +3,13 @@
  * Galeria de aplicações — fase "prova" da biblioteca B2.
  *
  * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
- * cabeçalho à esquerda com link à direita e 4 cards-botão — foto 6:5 com o número
+ * cabeçalho centralizado e 4 cards-botão — foto 6:5 com o número
  * no canto e painel verde-escuro com título, texto e seta. O card inteiro é o CTA,
  * por isso o `<button>` envolve a foto e o texto.
  */
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
+import Eyebrow from '@components/Eyebrow.astro'
 import Icon from '@components/Icon.astro'
 import type { SectionProps } from '@lib/layout'
 import { applications } from '@data/sections/aplicacoes'
@@ -18,38 +19,26 @@ type Props = SectionProps
 const { tone, rhythm } = Astro.props
 ---
 
-<Section id="aplicacoes" tone={tone} rhythm={rhythm}>
+<Section id="aplicacoes" tone={tone} rhythm={rhythm} class="tex tex-dots tex-rings">
   <div class="pt-6 lg:pt-10">
-    <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-      <div class="max-w-4xl">
-        <span class="inline-flex items-center gap-3 font-sans text-[12.5px] font-bold tracking-[0.22em] text-ink-soft uppercase">
-          <span aria-hidden="true" class="size-3 rounded-[3px] bg-brand-mint"></span>
-          {applications.eyebrow}
-        </span>
-        <h2 class="mt-4 max-w-[40rem] font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-primary-dark sm:text-5xl lg:text-[3.35rem]">
+    <div class="flex flex-col items-center text-center">
+      <div>
+        <Eyebrow>{applications.eyebrow}</Eyebrow>
+        <h2 class="mx-auto mt-4 font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-primary-dark text-balance sm:text-5xl lg:text-[3.35rem] lg:whitespace-nowrap">
           {applications.title}
         </h2>
         <p class="mt-4 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
           {applications.text}
         </p>
       </div>
-
-      <button
-        type="button"
-        data-cta="aplicacoes-cta"
-        class="btn-slave-whats group inline-flex w-fit shrink-0 items-center gap-3 border-b-2 border-brand-mint pb-1.5 font-sans text-[16px] font-semibold text-primary-dark transition-colors duration-200 hover:text-accent-orange lg:mt-6"
-      >
-        {applications.cta}
-        <Icon
-          name="arrow-right"
-          class="size-5 transition-transform duration-200 group-hover:translate-x-1"
-        />
-      </button>
     </div>
 
-    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <ul
+      class="apps-track scroll-track mt-10 -mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pt-1 pb-8 lg:mx-0 lg:px-0"
+      aria-label={applications.eyebrow}
+    >
       {applications.items.map((app, i) => (
-        <li>
+        <li class="apps-item w-[78%] shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]">
           <button
             type="button"
             data-cta={`aplicacoes-${app.id}`}
@@ -87,8 +76,44 @@ const { tone, rhythm } = Astro.props
         </li>
       ))}
     </ul>
+
+    <div class="flex items-center justify-center gap-3">
+      <button
+        type="button"
+        data-rail-prev
+        aria-label="Segmentos anteriores"
+        class="flex size-11 items-center justify-center rounded-full border border-primary-dark/20 bg-neutral-light text-primary-dark transition-colors hover:border-accent-orange hover:bg-accent-orange hover:text-neutral-light"
+      >
+        <Icon name="chevron-right" class="size-5 rotate-180" />
+      </button>
+      <button
+        type="button"
+        data-rail-next
+        aria-label="Próximos segmentos"
+        class="flex size-11 items-center justify-center rounded-full border border-primary-dark/20 bg-neutral-light text-primary-dark transition-colors hover:border-accent-orange hover:bg-accent-orange hover:text-neutral-light"
+      >
+        <Icon name="chevron-right" class="size-5" />
+      </button>
+    </div>
   </div>
 </Section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('#aplicacoes').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.apps-track')
+    const prev = root.querySelector<HTMLButtonElement>('[data-rail-prev]')
+    const next = root.querySelector<HTMLButtonElement>('[data-rail-next]')
+    if (!track || !prev || !next) return
+
+    const step = () => {
+      const card = track.querySelector<HTMLElement>('li')
+      return card ? card.offsetWidth + 20 : track.clientWidth * 0.8
+    }
+
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }))
+    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }))
+  })
+</script>
 
 <style>
   .app-panel {

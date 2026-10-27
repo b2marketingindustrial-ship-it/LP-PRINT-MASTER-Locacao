@@ -9,6 +9,8 @@
  */
 import { Picture } from 'astro:assets'
 import Section from '@components/Section.astro'
+import Eyebrow from '@components/Eyebrow.astro'
+import Button from '@components/Button.astro'
 import Icon from '@components/Icon.astro'
 import type { SectionProps } from '@lib/layout'
 import { why } from '@data/sections/diferenciais'
@@ -18,9 +20,16 @@ type Props = SectionProps
 const { tone, rhythm } = Astro.props
 ---
 
-<Section id="diferenciais" tone={tone} rhythm={rhythm} container={false} class="relative" data-why>
+<Section
+  id="diferenciais"
+  tone={tone}
+  rhythm={rhythm}
+  container={false}
+  class="relative pb-0! max-lg:pb-8!"
+  data-why
+>
   {/* Bloco em largura total sobre a foto */}
-  <div class="why-hero relative overflow-hidden rounded-[40px] bg-primary-dark lg:rounded-[64px]">
+  <div class="why-hero relative overflow-hidden rounded-t-[40px] bg-primary-dark lg:rounded-t-[64px]">
     <Picture
       src={why.scene.src}
       alt={why.scene.alt}
@@ -37,13 +46,7 @@ const { tone, rhythm } = Astro.props
 
     <div class="relative z-[2] mx-auto w-full max-w-page px-6 pt-14 pb-28 lg:px-10 lg:pt-20 lg:pb-36">
       <div class="relative max-w-xl lg:max-w-[680px]">
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute -top-4 -left-0 size-[18px] border-t-2 border-l-2 border-brand-mint"
-        ></span>
-        <span class="inline-flex items-center pl-5 font-sans text-[12.5px] font-bold tracking-[0.22em] text-neutral-light/85 uppercase">
-          {why.eyebrow}
-        </span>
+        <Eyebrow tone="light">{why.eyebrow}</Eyebrow>
         <h2 class="mt-4 font-display text-[2.3rem] leading-[1.06] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3.1rem] xl:text-[3.4rem]">
           {why.titleLines.map((line, i) => (
             <>
@@ -55,27 +58,25 @@ const { tone, rhythm } = Astro.props
 
         <span aria-hidden="true" class="mt-6 block h-[3px] w-20 rounded-full bg-brand-mint"></span>
 
-        <p class="mt-6 max-w-[36rem] font-sans text-[17px] leading-relaxed text-neutral-light/85 sm:text-[19px]">
-          {why.text}
+        <p class="mt-6 max-w-[36rem] font-sans lg:max-w-[40rem] text-[17px] leading-relaxed text-neutral-light/85 sm:text-[19px]">
+          {why.text.split('|').map((line, i) => (
+            <Fragment>
+              {i > 0 && <br class="hidden lg:block" />}
+              {i > 0 && ' '}
+              {line}
+            </Fragment>
+          ))}
         </p>
 
-        <button
-          type="button"
-          data-cta="diferenciais-cta"
-          class="btn-slave-whats group mt-8 inline-flex w-full items-center justify-center gap-3 rounded-sm bg-accent-orange px-7 py-4 font-sans text-[16px] font-bold text-neutral-light shadow-[0_16px_32px_-16px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:bg-accent-orange-dark sm:w-auto"
-        >
+        <Button cta="diferenciais-cta" variant="mint" class="mt-8 w-full sm:w-auto">
           {why.cta}
-          <Icon
-            name="arrow-right"
-            class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
-          />
-        </button>
+        </Button>
       </div>
     </div>
   </div>
 
   {/* Cards sobrepostos à base do bloco */}
-  <div class="relative z-10 mx-auto -mt-20 max-w-page px-6 lg:px-10">
+  <div class="relative z-10 mx-auto -mt-20 max-w-page lg:-mb-10 px-6 lg:px-10">
     <ul
       class="why-track scroll-track -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0"
       aria-label={why.eyebrow}

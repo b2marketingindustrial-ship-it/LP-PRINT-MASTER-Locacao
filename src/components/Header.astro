@@ -5,7 +5,7 @@
  * pílula verde. A ordem continua a do padrão — logo · tagline · CTA —, sem menu nem âncoras.
  */
 import { Image } from 'astro:assets'
-import Icon from './Icon.astro'
+import Button from './Button.astro'
 import logo from '../assets/LOGO.png'
 import { site } from '../data/site'
 import { header, cta } from '../data/content'
@@ -35,14 +35,9 @@ import { header, cta } from '../data/content'
     </span>
 
     {/* 3. CTA em pílula verde, rótulo curto no mobile */}
-    <button
-      type="button"
-      data-cta="header-cta"
-      class="btn-slave-whats inline-flex shrink-0 items-center gap-2 rounded-full bg-primary-dark px-4 py-2.5 font-sans text-[12px] font-bold text-neutral-light shadow-[0_10px_24px_-12px_rgba(6,67,55,0.7)] transition-colors duration-200 hover:bg-primary-dark-800 sm:px-6 sm:py-3 sm:text-[14px]"
-    >
-      <Icon name="whatsapp" class="size-4 shrink-0" />
+    <Button cta="header-cta" size="sm">
       <span class="sm:hidden">{cta.primaryShort}</span>
       <span class="hidden sm:inline">{cta.primary}</span>
-    </button>
+    </Button>
   </div>
 </header>

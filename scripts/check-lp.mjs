@@ -194,7 +194,7 @@ for (const f of astroFiles) {
     // branco com logo sem placa e hero claro, com a foto ancorada pelo centro da coluna 2.
     // A ordem logo · tagline · CTA, o grid de três colunas e a coluna de 300px do shortcode
     // continuam os do padrão.
-    'Header.astro': ['sticky top-0 z-50', 'header.tagline', 'data-cta="header-cta"'],
+    'Header.astro': ['sticky top-0 z-50', 'header.tagline', 'cta="header-cta"'],
     'Hero.astro': [
       'grid-template-columns: minmax(0, var(--text-col)) minmax(0, 1fr) var(--chat-col)',
       'left: var(--window-center)',
@@ -208,8 +208,6 @@ for (const f of astroFiles) {
       'id="cotacao"',
       'lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]',
       'order-2 w-full lg:order-1',
-      // Sem 'data-cta="cotacao-whatsapp"' desde 26/10/2026: a pedido do cliente o botão de
-      // WhatsApp da Cotação virou espaço vazio reservado (docs/BRIEFING.md).
     ],
     'Footer.astro': [
       'navy-premium border-t border-white/15',

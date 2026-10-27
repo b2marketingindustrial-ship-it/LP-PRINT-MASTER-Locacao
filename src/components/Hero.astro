@@ -4,13 +4,14 @@
  * (mockup de abertura, 26/10/2026 — docs/BRIEFING.md).
  *
  * Grid desktop: texto (--text-col) · janela da foto (1fr) · shortcode do chat (300px).
- * A foto é clara e ocupa a altura do hero; o centro do grupo de impressoras (~53,5% da
+ * Fundo verde-escuro; a foto ocupa a altura do hero, com véus verdes nas laterais; o centro do grupo de impressoras (~53,5% da
  * largura da imagem) é ancorado no centro da coluna 2, em qualquer largura de tela.
  * No mobile a foto vira um card entre o texto e o chat.
  * Abra a página com `?grid=1` para ver as colunas.
  */
 import { Picture } from 'astro:assets'
 import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
 import Button from './Button.astro'
 import { hero, cta } from '../data/content'
 
@@ -23,17 +24,17 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
 ---
 
 <section
-  class="hero relative isolate overflow-hidden rounded-b-[40px] bg-[linear-gradient(180deg,#f7fdfb_0%,#ffffff_100%)] shadow-[0_28px_56px_-40px_rgba(6,67,55,0.45)] lg:rounded-b-[64px]"
+  class="hero relative isolate overflow-hidden rounded-b-[40px] bg-[linear-gradient(135deg,#0b6a53_0%,#064337_55%,#032c24_100%)] shadow-[0_28px_56px_-40px_rgba(6,67,55,0.45)] lg:rounded-b-[64px]"
   data-hero
 >
   {/* z2 — véus claros sobre a foto (desktop) */}
   <div class="hero-veil-left pointer-events-none absolute inset-y-0 left-0 z-[2] hidden lg:block"></div>
   <div class="hero-veil-right pointer-events-none absolute inset-y-0 right-0 z-[2] hidden lg:block"></div>
-  <div class="pointer-events-none absolute inset-x-0 bottom-0 z-[2] hidden h-24 bg-gradient-to-t from-neutral-light to-transparent lg:block"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 z-[2] hidden h-14 bg-gradient-to-t from-primary-dark-900 to-transparent lg:block"></div>
 
   {/* z2 — curvas menta da marca */}
   <svg
-    class="pointer-events-none absolute -bottom-64 -left-72 z-[2] size-[560px] text-brand-mint/35"
+    class="pointer-events-none absolute -bottom-64 -left-72 z-[2] size-[560px] text-brand-mint/30"
     viewBox="0 0 560 560"
     fill="none"
     stroke="currentColor"
@@ -45,7 +46,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
   </svg>
   <span
     aria-hidden="true"
-    class="pointer-events-none absolute -top-32 -left-24 z-[2] size-[420px] rounded-full bg-brand-mint/15 blur-3xl"
+    class="pointer-events-none absolute -top-32 -left-24 z-[2] size-[420px] rounded-full bg-brand-mint/20 blur-3xl"
   ></span>
 
   {/* conteúdo — sem `relative` no contêiner: no desktop a foto se posiciona pelo hero */}
@@ -53,51 +54,47 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
     <div class="hero-grid grid items-center gap-y-10 lg:gap-x-8">
       {/* Coluna 1 — textos */}
       <div class="relative z-[3] max-w-xl lg:max-w-none">
-        <span class="inline-flex items-center gap-3 font-sans text-[12.5px] font-bold tracking-[0.2em] text-accent-orange uppercase">
-          <span aria-hidden="true" class="h-[2px] w-8 rounded-full bg-brand-mint"></span>
-          {hero.eyebrow}
-        </span>
+        <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
 
-        <h1 class="mt-4 font-display text-[2.7rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-ink sm:text-[3.4rem] lg:text-[2.9rem] xl:text-[3.9rem]">
+        <h1 class="mt-4 font-display text-[2.7rem] leading-[1.04] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-[3.4rem] lg:text-[2.8rem] lg:whitespace-nowrap xl:text-[3.6rem] [text-shadow:0_2px_20px_rgba(3,44,36,0.55)]">
           {titleBefore}
-          {at >= 0 && <span class="hero-highlight block text-accent-orange">{hero.highlight}</span>}
+          {at >= 0 && <span class="hero-highlight text-brand-mint">{hero.highlight}</span>}
+          <br class="hidden lg:block" />
           {titleAfter}
         </h1>
 
-        <p class="mt-6 max-w-[30rem] font-sans text-[17px] leading-relaxed text-ink-soft">
+        <p class="mt-6 max-w-[30rem] font-sans lg:max-w-[34rem] text-[17px] leading-relaxed text-neutral-light/85">
           {hero.text}
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-x-2 gap-y-3">
-          <Button
-            cta="hero-primary"
-            variant="primary"
-            class="rounded-full shadow-[0_18px_36px_-16px_rgba(2,118,83,0.8)]"
-          >
+          <Button cta="hero-primary" variant="mint">
             {cta.primary}
           </Button>
-          <button
-            type="button"
+          {/* Link para a seção de produtos: não abre o atendimento, por isso não é btn-slave-whats. */}
+          <a
+            href="#linhas"
             data-cta="hero-secondary"
-            class="btn-slave-whats group inline-flex items-center gap-2.5 rounded-full px-4 py-3 font-sans text-[15px] font-semibold text-primary-dark transition-colors duration-200 hover:text-accent-orange"
+            class="group inline-flex items-center gap-2.5 rounded-full px-4 py-3 font-sans text-[15px] font-semibold text-neutral-light transition-colors duration-200 hover:text-brand-mint"
           >
-            <span class="flex size-8 items-center justify-center rounded-full bg-brand-mint-soft ring-1 ring-brand-mint/60 transition-colors duration-200 group-hover:bg-brand-mint/30">
-              <Icon name="search" class="size-4" />
+            <span class="flex size-8 items-center justify-center rounded-full bg-neutral-light/10 text-brand-mint ring-1 ring-brand-mint/50 transition-colors duration-200 group-hover:bg-brand-mint/25">
+              <Icon name="arrow-down" class="size-4" />
             </span>
             {cta.secondary}
-          </button>
+          </a>
         </div>
 
-        {/* 3 pontos de confiança — texto sempre em duas linhas */}
-        <ul class="mt-9 flex flex-wrap gap-x-6 gap-y-4" aria-label="Destaques">
+        {/* 4 pontos de confiança — texto sempre em duas linhas. Grade 2×2 até o xl, uma linha a partir dele. */}
+        <ul
+          class="mt-9 grid w-fit max-w-full grid-cols-1 gap-y-3 rounded-2xl border border-neutral-light/20 bg-neutral-light/10 px-2 py-3 shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] backdrop-blur-md min-[400px]:grid-cols-2 xl:flex xl:max-w-none xl:flex-nowrap xl:items-stretch"
+          aria-label="Destaques"
+        >
           {hero.points.map((point) => (
-            <li class="flex items-center gap-3">
-              <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-mint-soft text-accent-orange ring-1 ring-brand-mint/50">
-                <Icon name={point.icon} class="size-[18px]" />
-              </span>
-              <span class="font-sans text-[13.5px] leading-snug font-semibold text-ink">
+            <li class="flex items-center gap-3 border-neutral-light/20 px-4 min-[400px]:even:border-l xl:gap-2.5 xl:border-l xl:px-3.5 xl:first:border-l-0">
+              <Icon name={point.icon} class="size-6 shrink-0 text-brand-mint" />
+              <span class="font-sans text-[13.5px] leading-snug font-semibold text-neutral-light">
                 <span class="block whitespace-nowrap">{point.line1}</span>
-                <span class="block whitespace-nowrap text-ink-soft">{point.line2}</span>
+                <span class="block whitespace-nowrap text-neutral-light/70">{point.line2}</span>
               </span>
             </li>
           ))}
@@ -120,6 +117,10 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
             class="hero-photo-img"
             pictureAttributes={{ class: 'block h-full' }}
           />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-orange/8 via-transparent to-primary-dark-900/12 mix-blend-multiply"
+          ></span>
         </div>
       </div>
 
@@ -240,10 +241,21 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       inset-block: 0;
       left: var(--window-center);
       transform: translateX(-53.5%);
+      /* Empurra o grupo de impressoras 50px em direção ao chat. */
+      margin-left: 50px;
       aspect-ratio: auto;
       border-radius: 0;
       box-shadow: none;
-      mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        rgb(0 0 0 / 0.12) 6%,
+        rgb(0 0 0 / 0.4) 13%,
+        rgb(0 0 0 / 0.75) 20%,
+        black 28%,
+        black 94%,
+        transparent 100%
+      );
     }
 
     .hero-photo :global(.hero-photo-img) {
@@ -252,14 +264,22 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       height: 100%;
     }
 
-    /* Claro sob o texto, dissolvendo antes das impressoras. */
+    /* Verde sob o texto, dissolvendo antes das impressoras em curva de cosseno (sem degrau). */
     .hero-veil-left {
-      width: calc(var(--page-edge) + 40px + var(--text-col) + 90px);
+      width: calc(var(--page-edge) + 40px + var(--text-col) + 350px);
       background: linear-gradient(
         to right,
-        rgb(247 253 251 / 0.97) 0%,
-        rgb(247 253 251 / 0.92) calc(100% - 230px),
-        rgb(247 253 251 / 0.55) calc(100% - 110px),
+        rgb(8 82 66 / 0.95) 0%,
+        rgb(8 82 66 / 0.92) calc(100% - 400px),
+        rgb(8 82 66 / 0.88) calc(100% - 360px),
+        rgb(8 82 66 / 0.79) calc(100% - 320px),
+        rgb(8 82 66 / 0.68) calc(100% - 280px),
+        rgb(8 82 66 / 0.54) calc(100% - 240px),
+        rgb(8 82 66 / 0.4) calc(100% - 200px),
+        rgb(8 82 66 / 0.27) calc(100% - 160px),
+        rgb(8 82 66 / 0.16) calc(100% - 120px),
+        rgb(8 82 66 / 0.07) calc(100% - 80px),
+        rgb(8 82 66 / 0.02) calc(100% - 40px),
         transparent 100%
       );
     }
@@ -269,8 +289,10 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       width: calc(var(--page-edge) + 40px + var(--chat-col) + 70px);
       background: linear-gradient(
         to left,
-        rgb(247 253 251 / 0.88) 0%,
-        rgb(247 253 251 / 0.7) calc(100% - 150px),
+        rgb(4 52 43 / 0.7) 0%,
+        rgb(4 52 43 / 0.5) calc(100% - 190px),
+        rgb(4 52 43 / 0.28) calc(100% - 120px),
+        rgb(4 52 43 / 0.1) calc(100% - 60px),
         transparent 100%
       );
     }
@@ -303,7 +325,8 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
   // Fora do WordPress os shortcodes (chat do hero, formulário da cotação) chegam como texto
   // cru ("[atendimento_chat …]"): apaga o texto e deixa o espaço reservado vazio. No WordPress
   // o plugin já os trocou e nada muda.
-  if (!/wordpress|printmaster\.net\.br/i.test(location.hostname)) {
+  // Em desenvolvimento (npm run dev) o texto fica visível, para conferir onde cada shortcode cai.
+  if (!import.meta.env.DEV && !/wordpress|printmaster\.net\.br/i.test(location.hostname)) {
     document.querySelectorAll<HTMLElement>('[data-shortcode-slot]').forEach((holder) => {
       const nodes = [...holder.childNodes]
       const text = nodes

@@ -23,8 +23,8 @@ As tabelas da seção 2 abaixo continuam sendo a fonte dos pares de padding — 
 
 | Item                                   | Valor                                                                                                                             |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Container de toda seção                | `mx-auto max-w-page px-6 lg:px-10` → 1320px máx, gutter 24px mobile / 40px desktop                                                |
-| Largura útil no desktop (≥1320)        | 1240px                                                                                                                            |
+| Container de toda seção                | `mx-auto max-w-page px-6 lg:px-10` → 1450px máx, gutter 24px mobile / 40px desktop                                                |
+| Largura útil no desktop (≥1450)        | 1370px                                                                                                                            |
 | Breakpoints usados                     | `sm` 640 · `lg` 1024 · `xl` 1280. Não usar `md` nem `2xl`                                                                         |
 | Largura de texto do cabeçalho de seção | `max-w-xl` (576) para 1 frase · `max-w-2xl` (672) para 2 frases · `mx-auto max-w-4xl text-center` (896) só em galerias simétricas |
 | Parágrafo dentro de bloco navy         | `max-w-xl lg:max-w-[46%]`                                                                                                         |

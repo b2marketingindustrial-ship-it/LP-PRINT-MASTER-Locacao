@@ -39,7 +39,7 @@ export const title = `${site.product} para ${site.context} | ${site.brand}`
 
 /** Meta description (≤ 160 caracteres). Ajuste o texto, mantendo marcas e o apoio técnico. */
 export const description =
-  'Locação de impressoras para empresas em Goiânia: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
+  'Locação de impressoras para empresas em Goiânia e no DF: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
 
 /**
  * Campanha que leva tráfego para esta LP (entrada 15). Quem clica digitou a

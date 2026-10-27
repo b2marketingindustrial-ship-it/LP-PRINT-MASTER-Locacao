@@ -2,13 +2,14 @@
 /**
  * Como funciona — fase "apoio" da biblioteca B2.
  *
- * Variante local da Print Master (mockup aprovado em 26/10/2026, docs/BRIEFING.md):
- * cabeçalho claro com o botão e a garantia à direita, e as etapas em 4 cards
- * verde-escuros numerados — eles são o bloco escuro desta metade da página.
- * Fundo e respiro continuam vindo da composição via `tone`/`rhythm`; o menta é uma
- * camada por cima do tom.
+ * Variante local da Print Master: painel verde-escuro arredondado com o cabeçalho (eyebrow com
+ * traço, título com destaque em menta), a barra de vidro com a garantia e o botão, e a linha do
+ * tempo das etapas — uma linha menta atravessa os números, com setas entre os cards de vidro.
+ * Fundo e respiro continuam vindo da composição via `tone`/`rhythm`.
  */
 import Section from '@components/Section.astro'
+import Eyebrow from '@components/Eyebrow.astro'
+import Button from '@components/Button.astro'
 import Icon from '@components/Icon.astro'
 import type { SectionProps } from '@lib/layout'
 import { process } from '@data/sections/processo'
@@ -17,68 +18,84 @@ type Props = SectionProps
 
 const { tone, rhythm } = Astro.props
 const steps = process.steps
+
+const at = process.title.indexOf(process.highlight)
+const titleBefore = at >= 0 ? process.title.slice(0, at) : process.title
 ---
 
-<Section id="processo" tone={tone} rhythm={rhythm} data-processo>
-  <div class="pt-10 lg:pt-14">
-    <div class="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-      <div class="max-w-3xl">
-        <span class="inline-flex items-center gap-3 font-sans text-[12.5px] font-bold tracking-[0.22em] text-primary-dark uppercase">
-          <span aria-hidden="true" class="size-3 rounded-[3px] bg-brand-mint"></span>
-          {process.eyebrow}
-        </span>
-        <h2 class="mt-4 font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-primary-dark sm:text-5xl lg:text-[3.35rem]">
-          {process.title}
-        </h2>
-        <p class="mt-4 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
-          {process.text}
-        </p>
-      </div>
+<Section id="processo" tone={tone} rhythm={rhythm} class="tex tex-grid tex-rings" data-processo>
+  <div class="pt-6 lg:pt-10">
+    <div class="process-panel relative overflow-hidden rounded-[28px] p-6 shadow-[0_40px_80px_-40px_rgba(3,44,36,0.7)] sm:p-8 lg:rounded-[36px] lg:p-12">
+      <span aria-hidden="true" class="blueprint-grid pointer-events-none absolute inset-0"></span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-32 -left-24 size-[420px] rounded-full bg-brand-mint/15 blur-3xl"
+      ></span>
 
-      <div class="flex flex-col items-stretch gap-3 sm:items-start lg:shrink-0 lg:pt-3">
-        <button
-          type="button"
-          data-cta="processo-cta"
-          class="btn-slave-whats group inline-flex items-center justify-center gap-4 rounded-xl bg-primary-dark px-8 py-4 font-sans text-[16px] font-bold text-neutral-light shadow-[0_18px_36px_-18px_rgba(6,67,55,0.7)] transition-colors duration-200 hover:bg-accent-orange"
-        >
-          {process.cta}
-          <Icon
-            name="arrow-right"
-            class="size-5 transition-transform duration-200 group-hover:translate-x-0.5"
-          />
-        </button>
-        <span class="flex items-center gap-2 pl-1 font-sans text-[14px] text-ink-soft">
-          <Icon name="shield" class="size-4 shrink-0 text-accent-orange" />
-          {process.microcopy}
-        </span>
-      </div>
-    </div>
-
-    <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" aria-label={process.eyebrow}>
-      {steps.map((step, i) => (
-        <li class="process-card relative flex flex-col overflow-hidden rounded-2xl p-7 ring-1 ring-brand-mint/25 shadow-[0_26px_50px_-30px_rgba(6,67,55,0.75)] lg:p-8">
-          <span
-            aria-hidden="true"
-            class="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-brand-mint/10 blur-2xl"
-          />
-          <span class="relative flex size-14 items-center justify-center rounded-xl bg-brand-mint-soft font-display text-xl font-extrabold text-primary-dark">
-            {String(i + 1).padStart(2, '0')}
-          </span>
-          <h3 class="relative mt-5 font-display text-[1.35rem] leading-snug font-extrabold text-neutral-light lg:text-[1.15rem] xl:text-[1.25rem]">
-            {step.title}
-          </h3>
-          <p class="relative mt-3 font-sans text-[16px] leading-relaxed text-neutral-light/80">
-            {step.description}
+      <div class="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+        <div>
+          <Eyebrow tone="light">{process.eyebrow}</Eyebrow>
+          <h2 class="mt-4 font-display text-[2.1rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-neutral-light sm:text-5xl lg:text-[3rem]">
+            {titleBefore}
+            {at >= 0 && <span class="text-brand-mint">{process.highlight}</span>}
+          </h2>
+          <p class="mt-4 font-sans text-[17px] leading-relaxed text-neutral-light/80 sm:text-lg">
+            {process.text}
           </p>
-          {step.when && (
-            <span class="relative mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-sans text-[11px] font-bold tracking-[0.12em] text-neutral-light/85 uppercase">
-              <Icon name="clock" class="size-3.5 shrink-0 text-brand-mint" />
-              {step.when}
+        </div>
+
+        <div class="flex shrink-0 flex-col gap-4 rounded-2xl border border-neutral-light/20 bg-neutral-light/10 p-4 backdrop-blur-md sm:flex-row sm:items-center sm:gap-5 sm:pl-5">
+          <div class="flex items-center gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-light/10 text-brand-mint ring-1 ring-brand-mint/40">
+              <Icon name="shield" class="size-[18px]" />
             </span>
-          )}
-        </li>
-      ))}
-    </ol>
+            <p class="font-sans text-[15px] leading-snug font-bold text-neutral-light sm:whitespace-nowrap">
+              {process.microcopy}
+            </p>
+          </div>
+          <Button cta="processo-cta" variant="mint" class="w-full sm:w-auto sm:whitespace-nowrap">
+            {process.cta}
+          </Button>
+        </div>
+      </div>
+
+      <ol
+        class="mt-10 grid gap-x-5 gap-y-6 sm:grid-cols-2 lg:grid-cols-4"
+        aria-label={process.eyebrow}
+      >
+        {steps.map((step, i) => (
+          <li class="process-step relative flex flex-col">
+            {/* Trilho: número centrado; no desktop, a linha liga este número ao próximo. */}
+            <div class="process-rail relative flex h-8 items-center justify-center">
+              <span class="relative z-[1] flex size-8 items-center justify-center rounded-full bg-brand-mint font-display text-[13px] font-extrabold text-primary-dark-900 shadow-[0_0_0_5px_rgb(6_67_55/0.9),0_8px_18px_-8px_rgba(0,0,0,0.5)]">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              {/* Haste curta que liga o número ao card. */}
+              <span
+                aria-hidden="true"
+                class="absolute top-full left-1/2 h-3 w-px -translate-x-1/2 bg-gradient-to-b from-brand-mint/70 to-brand-mint/10"
+              ></span>
+            </div>
+
+            <div class="mt-3 flex flex-1 flex-col rounded-xl border border-neutral-light/20 bg-neutral-light/[0.07] px-4 pt-4 pb-4 backdrop-blur-sm">
+              <h3 class="flex items-center gap-2 font-display text-[1.02rem] leading-snug font-extrabold text-neutral-light">
+                <Icon name={step.icon} class="size-[18px] shrink-0 text-brand-mint" />
+                {step.title}
+              </h3>
+              <p class="mt-1.5 font-sans text-[14px] leading-normal text-pretty text-neutral-light/75">
+                {step.description}
+              </p>
+              {step.when && (
+                <span class="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-sans text-[11px] font-bold tracking-[0.12em] text-neutral-light/85 uppercase">
+                  <Icon name="clock" class="size-3.5 shrink-0 text-brand-mint" />
+                  {step.when}
+                </span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </Section>
 
@@ -86,19 +103,79 @@ const steps = process.steps
   /* Camada clara sobre o tom da seção: sai do branco de `linhas` e chega no cinza-menta
      de `aplicacoes`, sem emenda entre as três. */
   :global([data-processo]) {
-    background-image: linear-gradient(
-      180deg,
-      #ffffff 0%,
-      var(--color-neutral-gray-100) 55%,
-      var(--color-neutral-gray-100) 100%
-    );
+    background-image: linear-gradient(180deg, #ffffff 0%, #f2f8f6 55%, #f2f8f6 100%);
   }
 
-  .process-card {
-    background-image: linear-gradient(
-      160deg,
-      var(--color-primary-dark-800) 0%,
-      var(--color-primary-dark) 100%
-    );
+  /* Cores literais (e não `var(--color-*)`): o painel não pode depender de o Tailwind ter
+     emitido as variáveis do tema neste arquivo, senão o gradiente some e o texto branco
+     fica sobre fundo claro. */
+  .process-panel {
+    background-color: #064337;
+    background-image:
+      radial-gradient(900px 420px at 12% -10%, rgb(97 229 169 / 0.18) 0%, transparent 60%),
+      radial-gradient(circle, rgb(97 229 169 / 0.16) 1.3px, transparent 1.7px),
+      linear-gradient(165deg, #0a5a49 0%, #064337 55%, #032c24 100%);
+    background-size:
+      auto,
+      26px 26px,
+      auto;
+  }
+
+  /* Anéis menta no canto inferior direito e grafo de nós no superior direito. */
+  .process-panel::before,
+  .process-panel::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .process-panel::before {
+    inset: auto -180px -260px auto;
+    width: 560px;
+    height: 560px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560' fill='none' stroke='%2361e5a9' stroke-opacity='.22'%3E%3Ccircle cx='280' cy='280' r='120' stroke-width='1.5'/%3E%3Ccircle cx='280' cy='280' r='180' stroke-width='1.2'/%3E%3Ccircle cx='280' cy='280' r='240' stroke-width='1'/%3E%3Ccircle cx='280' cy='280' r='276' stroke-width='.8'/%3E%3C/svg%3E")
+      no-repeat center / contain;
+  }
+
+  .process-panel::after {
+    inset: 0 0 auto auto;
+    width: min(520px, 60%);
+    aspect-ratio: 640 / 420;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 420' fill='none'%3E%3Cg stroke='%2361e5a9' stroke-opacity='.25' stroke-width='1.2'%3E%3Cpath d='M40 60 L170 120 L300 50 L430 140 L560 70'/%3E%3Cpath d='M170 120 L210 250 L360 230 L430 140'/%3E%3Cpath d='M360 230 L470 330 L580 250 L560 70'/%3E%3Cpath d='M300 50 L360 230'/%3E%3C/g%3E%3Cg fill='%2361e5a9' fill-opacity='.55'%3E%3Ccircle cx='170' cy='120' r='6'/%3E%3Ccircle cx='300' cy='50' r='4'/%3E%3Ccircle cx='430' cy='140' r='7'/%3E%3Ccircle cx='560' cy='70' r='4'/%3E%3Ccircle cx='210' cy='250' r='5'/%3E%3Ccircle cx='360' cy='230' r='6'/%3E%3Ccircle cx='470' cy='330' r='5'/%3E%3Ccircle cx='580' cy='250' r='4'/%3E%3C/g%3E%3C/svg%3E")
+      no-repeat right top / contain;
+    opacity: 0.8;
+  }
+
+  /* Linha do tempo (desktop): do centro de um número ao centro do próximo — metade do card,
+     o vão de 20px e a metade do card seguinte —, longe das bordas arredondadas. A seta fica
+     no meio do vão. O anel verde-escuro do número dá o respiro entre ele e a linha. */
+  @media (min-width: 1024px) {
+    .process-step:not(:last-child) .process-rail::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      right: calc(-50% - 20px);
+      height: 2px;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        rgb(97 229 169 / 0.9),
+        rgb(97 229 169 / 0.45) 50%,
+        rgb(97 229 169 / 0.9)
+      );
+    }
+
+    .process-step:not(:last-child) .process-rail::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -14px;
+      transform: translateY(-50%);
+      border-left: 8px solid #61e5a9;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
   }
 </style>

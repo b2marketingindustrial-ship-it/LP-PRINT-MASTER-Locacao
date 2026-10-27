@@ -3,7 +3,8 @@
  * Botão de CTA do padrão B2.
  * - Sempre <button type="button"> com `btn-slave-whats`: o plugin de atendimento do WordPress captura o clique.
  * - `cta` é obrigatório e vira `data-cta` para rastreamento (convenção: `{secao}-{elemento}`).
- * - Cantos retos, ícone arrow-right à direita por padrão.
+ * - Pílula (rounded-full), ícone arrow-right à direita por padrão. Tamanhos: `md` (padrão) e `sm` (header).
+ * - Todo CTA do site usa este componente: não estilize <button> de CTA à mão.
  */
 import Icon from './Icon.astro'
 import type { IconName } from '../data/icons'
@@ -11,8 +12,9 @@ import type { IconName } from '../data/icons'
 interface Props {
   /** Identificador de rastreamento, ex.: "hero-primary", "linhas-esferas". */
   cta: string
-  variant?: 'primary' | 'outline-light' | 'outline-dark'
+  variant?: 'primary' | 'mint' | 'outline-light' | 'outline-dark'
   type?: 'button' | 'submit'
+  size?: 'sm' | 'md'
   icon?: boolean
   iconName?: IconName
   iconPosition?: 'left' | 'right'
@@ -23,6 +25,7 @@ const {
   cta,
   variant = 'primary',
   type = 'button',
+  size = 'md',
   icon = true,
   iconName = 'arrow-right',
   iconPosition = 'right',
@@ -30,23 +33,36 @@ const {
 } = Astro.props
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 px-6 py-3.5 font-sans text-[15px] font-semibold transition-colors duration-200'
+  'group inline-flex items-center justify-center gap-2.5 rounded-full font-sans font-bold transition-colors duration-200'
+
+const sizes = {
+  md: 'px-7 py-3.5 text-[15px]',
+  sm: 'px-4 py-2.5 text-[12px] sm:px-6 sm:py-3 sm:text-[14px]',
+}
 
 const variants = {
-  primary: 'bg-accent-orange text-neutral-light hover:bg-accent-orange-dark',
+  primary:
+    'bg-accent-orange text-neutral-light shadow-[0_18px_36px_-16px_rgba(2,118,83,0.8)] hover:bg-accent-orange-dark',
+  mint: 'bg-brand-mint text-primary-dark-900 shadow-[0_18px_36px_-16px_rgba(0,0,0,0.5)] hover:bg-neutral-light',
   'outline-light': 'border border-neutral-light/35 text-neutral-light hover:bg-neutral-light/10',
-  'outline-dark': 'border border-ink/25 text-ink hover:bg-ink/5',
+  'outline-dark':
+    'border-2 border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-neutral-light',
 }
 ---
 
 <button
   type={type}
   data-cta={cta}
-  class:list={['btn-slave-whats', base, variants[variant], className]}
+  class:list={['btn-slave-whats', base, sizes[size], variants[variant], className]}
 >
   {icon && iconPosition === 'left' && <Icon name={iconName} class="size-4 shrink-0" />}
   <span>
     <slot />
   </span>
-  {icon && iconPosition === 'right' && <Icon name={iconName} class="size-4 shrink-0" />}
+  {icon && iconPosition === 'right' && (
+    <Icon
+      name={iconName}
+      class="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+    />
+  )}
 </button>

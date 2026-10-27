@@ -22,7 +22,7 @@ campanha:
   mainKeyword: locação de impressoras
   negatives: []
   forbidden: []
-  areaAtendida: Goiânia/GO, confirmada pelo endereço; Brasília não confirmada
+  areaAtendida: GO e DF (sede em Goiânia; DF definido pelo usuário em 27/10/2026)
   onde: selo
   familias:
     - nome: locacao-aluguel
@@ -101,11 +101,11 @@ tokens:
 
 conteudo:
   title: null
-  description: 'Locação de impressoras para empresas em Goiânia: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
+  description: 'Locação de impressoras para empresas em Goiânia e no DF: multifuncionais laser Ricoh, copiadoras e scanners com manutenção inclusa e suporte especializado.'
   hero:
     eyebrow: Impressão corporativa
     title: Locação de impressoras para empresas
-    text: Multifuncionais laser Ricoh, copiadoras e scanners para a rotina da sua empresa, com manutenção inclusa e sem investimento inicial.
+    text: Variedade de multifuncionais, copiadoras e scanners, mono ou coloridos, com manutenção inclusa e sem investimento inicial.
     points:
       - icon: shield
         line1: Desde 2003
@@ -116,18 +116,21 @@ conteudo:
       - icon: users
         line1: Suporte
         line2: especializado
+      - icon: map-pin
+        line1: Atendimento
+        line2: em GO e DF
   quote:
     # mockup aprovado em 26/10/2026
-    eyebrow: Soluções para sua empresa
+    eyebrow: Peça sua cotação
     title: A impressão ideal para o ritmo da sua empresa.
-    text: Locação de impressoras com tecnologia, manutenção e suporte para simplificar a rotina da sua empresa.
+    text: Locação de impressoras com tecnologia, manutenção e suporte|para simplificar a rotina da sua empresa.
     trust:
       - icon: wrench
         label: Manutenção inclusa
       - icon: users
         label: Suporte remoto e presencial
       - icon: pin
-        label: Goiânia/GO
+        label: Atendimento em GO/DF
     lgpd: Seus dados serão usados apenas para responder à sua solicitação.
 
 blocos:
@@ -143,7 +146,7 @@ blocos:
     help:
       text: Precisa de ajuda para escolher?
       cta: Fale com um especialista
-    itemCta: Solicitar orçamento
+    itemCta: Solicite sua cotação
     brandsLabel: Soluções com marcas reconhecidas
     items:
       - id: multifuncionais
@@ -156,7 +159,7 @@ blocos:
         tag: Alta produtividade
         title: Copiadoras
         description: Mais agilidade para grandes volumes de cópias.
-        features: [Alta produtividade, Manutenção inclusa]
+        features: [Grandes volumes, Cópia e impressão]
         photo: Copiadora multifuncional Ricoh MP 4055
       - id: scanners
         tag: Digitalização
@@ -191,16 +194,16 @@ blocos:
     veredicto: completo
     responde: [locacao-aluguel]
     papeis: [Administrativo, Compras]
-    # variante local do mockup aprovado em 26/10/2026: cards numerados, sem ícones
+    # variante local de 27/10/2026: painel verde-escuro, linha do tempo e ícones por etapa
     eyebrow: Como funciona
     title: Da escolha à impressão, cuidamos de cada etapa.
     microcopy: Manutenção e suporte inclusos
-    text: Soluções sob medida para simplificar a rotina da sua empresa.
+    text: Um processo simples, do primeiro contato ao suporte contínuo.
     cta: Fale com um especialista
     steps:
       - id: diagnostico
         title: Diagnóstico
-        description: Entendemos o volume e as necessidades de impressão da sua empresa.
+        description: Entendemos o volume e as necessidades de impressão.
       - id: proposta
         title: Proposta sob medida
         description: Selecionamos os equipamentos e montamos sua proposta de locação.
@@ -219,7 +222,6 @@ blocos:
     eyebrow: Soluções por segmento
     title: Impressão para a rotina de cada negócio
     text: Soluções de impressão, cópia e digitalização para empresas de todos os portes e segmentos.
-    cta: Encontre a solução ideal
     items:
       - id: contabilidades
         label: Contabilidades
@@ -251,24 +253,24 @@ blocos:
     responde: [locacao-aluguel]
     papeis: [Diretoria, Compras]
     # variante local do mockup aprovado em 26/10/2026: foto de fundo, sem pessoa recortada
-    eyebrow: Soluções Print Master
-    titleLines: [Impressão inteligente, para sua empresa.]
-    text: Tecnologia, suporte e gestão para imprimir melhor, reduzir custos e simplificar a rotina da sua empresa.
-    cta: Solicite uma proposta
+    eyebrow: Por que a Print Master
+    titleLines: [Duas décadas de, soluções em impressão.]
+    text: A Print Master une tecnologia, suporte técnico|e gestão de documentos para empresas que precisam imprimir|com eficiência e custo previsível.
+    cta: Solicite sua cotação
     scene: Multifuncional Ricoh em escritório iluminado com plantas e estações de trabalho
     reasons:
-      - icon: tag
-        title: Redução de custos
-        description: Economia em compra, manutenção, toners e suprimentos.
-      - icon: wrench
-        title: Assistência técnica
-        description: Suporte remoto ou presencial quando precisar.
-      - icon: zap
-        title: Alta performance
-        description: Modelos laser e multifuncionais, mono ou coloridos.
+      - icon: badge-check
+        title: Desde 2003
+        description: Mais de duas décadas com impressão, cópia e digitalização.
+      - icon: building
+        title: Escritório e indústria
+        description: Experiência em dois segmentos, com solução para cada rotina.
+      - icon: map-pin
+        title: Atendimento local
+        description: Equipe em Goiânia para atender empresas de GO e DF.
       - icon: sliders
-        title: Gestão inteligente
-        description: Contabilização e gerenciamento eletrônico de documentos.
+        title: Gestão de documentos
+        description: Contabilização e gerenciamento eletrônico do que se imprime.
       - icon: shield
         title: Sem investimento inicial
         description: Use equipamentos sem comprar ou imobilizar capital.
@@ -291,7 +293,6 @@ conflitos:
 naoAplicado:
   - CNPJ 21.762.387/0001-93 (dado legal, sem bloco previsto no footer padrão)
   - texto institucional longo de apresentação da empresa
-  - aplicações excedentes "Clínicas e consultórios" e "Departamentos administrativos" (a foto do segundo virou o cenário de diferenciais)
   - logotipo antigo logo-printmaster.jpg
 ```
 
@@ -301,7 +302,7 @@ naoAplicado:
 
 ## O que foi decidido
 
-LP de serviço para a campanha de locação de impressoras da Print Master, com a palavra-chave `locação de impressoras` no H1 ("Locação de impressoras para empresas", o mesmo título da página atual do cliente) e no title. Goiânia entra na meta description e num selo da cotação ("Sede em Goiânia/GO"), porque o endereço a confirma; Brasília fica de fora até a cobertura ser confirmada.
+LP de serviço para a campanha de locação de impressoras da Print Master, com a palavra-chave `locação de impressoras` no H1 ("Locação de impressoras para empresas", o mesmo título da página atual do cliente) e no title. Goiânia e o DF entram na meta description e no selo da cotação ("Atendimento em GO/DF"), pela cobertura definida pelo usuário em 27/10/2026.
 
 A oferta abre em `linhas` com as quatro categorias do material: multifuncionais laser Ricoh, copiadoras, scanners inteligentes e equipamentos conectados (card escuro). O apoio mostra o caminho do atendimento em `processo`. A prova usa as quatro primeiras aplicações do material em `aplicacoes`. A autoridade fecha com a frase de autoridade "Sua empresa mais produtiva e econômica" e os cinco diferenciais do briefing.
 
@@ -339,7 +340,7 @@ A Ricoh aparece **só por extenso**. Não há claims proibidos no material.
 | 5   | PUBLICO            | Administrativo, Compras, TI, Diretoria                                      | **inferido** — cargos ausentes no material |
 | 6   | HERO               | desde 2003, manutenção inclusa, suporte especializado                       | briefing; forma curta do mockup (26/10)    |
 | 7   | MARCAS_ATENDIDAS   | Ricoh, só por extenso                                                       | briefing; uso de logo não decidido         |
-| 8   | SELOS_DE_CONFIANCA | manutenção inclusa, suporte remoto e presencial, sede em Goiânia            | briefing e endereço                        |
+| 8   | SELOS_DE_CONFIANCA | manutenção inclusa, suporte remoto e presencial, atendimento em GO/DF       | briefing e endereço                        |
 | 9   | ENDERECO           | Rua C56 nº 65, Qd. 103, Lt. 05, Setor Sudoeste, Goiânia/GO                  | briefing                                   |
 | 10  | URL + PRIVACIDADE  | `printmaster.net.br/lp-locacao-de-impressoras-para-empresas/`; sem política | briefing                                   |
 | 11  | SHORTCODES         | padrão do plugin                                                            | default                                    |
@@ -373,4 +374,4 @@ A Ricoh aparece **só por extenso**. Não há claims proibidos no material.
 
 ## Dados não usados pelo padrão
 
-CNPJ 21.762.387/0001-93; "Print Master 2026 | Todos direitos reservados" (o footer gera o ano); texto institucional longo; imagem com logos de fabricantes multimarcas; aplicações excedentes (clínicas e consultórios, departamentos administrativos); logotipo antigo.
+CNPJ 21.762.387/0001-93; "Print Master 2026 | Todos direitos reservados" (o footer gera o ano); texto institucional longo; imagem com logos de fabricantes multimarcas; logotipo antigo.

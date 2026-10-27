@@ -10,8 +10,8 @@
  */
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
+import Button from '@components/Button.astro'
 import Icon from '@components/Icon.astro'
-import Eyebrow from '@components/Eyebrow.astro'
 import type { SectionProps } from '@lib/layout'
 import { productLines } from '@data/sections/linhas'
 import { brands } from '@data/brands'
@@ -22,31 +22,29 @@ const { tone, rhythm } = Astro.props
 const lines = productLines.items
 ---
 
-<Section id="linhas" tone={tone} rhythm={rhythm} data-linhas>
-  <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+<Section id="linhas" tone={tone} rhythm={rhythm} class="tex tex-dots tex-graph" data-linhas>
+  <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
     <div class="max-w-3xl">
-      <Eyebrow>{productLines.eyebrow}</Eyebrow>
-      <h2 class="mt-4 font-display text-[2.2rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.35rem]">
+      <h2 class="font-display text-[2.2rem] text-balance leading-[1.05] font-extrabold tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.35rem]">
         {productLines.title}
       </h2>
-      <p class="mt-4 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
+      <p class="mt-5 font-sans text-[17px] leading-relaxed text-ink-soft sm:text-lg">
         {productLines.text}
       </p>
     </div>
 
-    <div class="shrink-0 lg:pb-2">
-      <p class="font-sans text-[15px] font-medium text-ink">{productLines.help.text}</p>
-      <button
-        type="button"
-        data-cta="linhas-ajuda"
-        class="btn-slave-whats group mt-3 inline-flex items-center gap-3 rounded-full border-2 border-primary-dark px-6 py-3 font-sans text-[15px] font-bold text-primary-dark transition-colors duration-200 hover:bg-primary-dark hover:text-neutral-light"
-      >
+    <div class="flex shrink-0 flex-col gap-4 rounded-2xl border border-primary-dark/15 bg-neutral-light/60 p-5 shadow-[0_20px_40px_-28px_rgba(6,67,55,0.5)] backdrop-blur-md lg:w-[380px]">
+      <div class="flex items-center gap-3">
+        <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-mint-soft text-accent-orange ring-1 ring-brand-mint/60">
+          <Icon name="chat" class="size-[18px]" />
+        </span>
+        <p class="font-sans text-[15px] leading-snug font-bold sm:whitespace-nowrap text-primary-dark">
+          {productLines.help.text}
+        </p>
+      </div>
+      <Button cta="linhas-ajuda" class="w-full sm:whitespace-nowrap">
         {productLines.help.cta}
-        <Icon
-          name="arrow-right"
-          class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
-        />
-      </button>
+      </Button>
     </div>
   </div>
 
@@ -87,14 +85,9 @@ const lines = productLines.items
             ))}
           </ul>
 
-          <button
-            type="button"
-            data-cta={`linhas-${line.id}`}
-            class="btn-slave-whats mt-auto flex w-full items-center justify-between gap-3 rounded-xl bg-primary-dark px-5 py-3.5 font-sans text-[15px] font-bold text-neutral-light transition-colors duration-200 hover:bg-accent-orange"
-          >
-            <span>{productLines.itemCta}</span>
-            <Icon name="arrow-right" class="size-4 shrink-0" />
-          </button>
+          <Button cta={`linhas-${line.id}`} class="mt-auto w-full justify-between">
+            {productLines.itemCta}
+          </Button>
         </div>
       </li>
     ))}
@@ -123,7 +116,7 @@ const lines = productLines.items
               width={240}
               loading="lazy"
               decoding="async"
-              class="h-9 w-auto max-w-full object-contain opacity-80 brightness-[0.6] contrast-125 grayscale sm:h-12 transition-[filter,opacity] duration-300 hover:opacity-100 hover:grayscale-0"
+              class="h-9 w-auto max-w-full object-contain sm:h-12 transition-transform duration-300 hover:scale-105"
             />
           </li>
         ))}
